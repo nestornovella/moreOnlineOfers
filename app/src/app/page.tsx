@@ -1,10 +1,13 @@
-import Image from "next/image";
+
+import MainContainer from "./components/containers/MainContainer";
 
 export default function Home() {
   return (
-    <main>
-    
-    </main>
+    <MainContainer>
+      <div className="bg-white w-full h-full">
+        <h2 className="text-3xl text-black">componente home</h2>
+      </div>
+    </MainContainer>
   );
 }
-// 
+

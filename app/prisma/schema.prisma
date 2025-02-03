@@ -30,9 +30,7 @@ model Product{
 model Category{
   id String @id @default(uuid()) @db.Uuid
   name String
-  //relacion con productos
   products Product[] @relation("productsCategories")
-  //relacion jerarquica categorias
   parentId String? @db.Uuid
   parent Category? @relation("subCategory", fields: [parentId], references: [id])
   subCategory Category[] @relation("subCategory")
@@ -41,9 +39,21 @@ model Category{
 model Seller{
   id String @id @default(uuid()) @db.Uuid
   name String 
+  phoneNumber String
   porcent Float
+  orders Order[] @relation("sellerOrder")
+  admin Boolean @default(false)
 }
 
-
-
+model Order{
+  id String @id @default(uuid()) @db.Uuid
+  order Json 
+  total Float
+  totalDiscount Float
+  sellerId String
+  seller Seller @relation("sellerOrder", fields: [sellerId], references: [id])
+  viewed Boolean @default(false)
+  completed Boolean @default(false)
+  delivered Boolean @default(false)
+}
 

@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+    --background: rgb(19, 18, 18);
+}
+
+body{
+    background-color:var(--background);
+}
