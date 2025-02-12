@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
@@ -20,11 +15,10 @@ model Product{
   description String?
   categories Category[] @relation("productsCategories")
   parentId String? @db.Uuid 
-  parent Product? @relation("productChild",fields: [parentId], references: [id])
+  parent Product? @relation("productChild",fields: [parentId], references: [id], onDelete: Cascade)
   varieties Product[] @relation("productChild")
   price Float
   image String?
-  
 }
 
 model Category{
@@ -32,7 +26,7 @@ model Category{
   name String
   products Product[] @relation("productsCategories")
   parentId String? @db.Uuid
-  parent Category? @relation("subCategory", fields: [parentId], references: [id])
+  parent Category? @relation("subCategory", fields: [parentId], references: [id], onDelete: Cascade)
   subCategory Category[] @relation("subCategory")
 }
 
@@ -50,10 +44,13 @@ model Order{
   order Json 
   total Float
   totalDiscount Float
-  sellerId String
+  sellerId String @db.Uuid
   seller Seller @relation("sellerOrder", fields: [sellerId], references: [id])
   viewed Boolean @default(false)
   completed Boolean @default(false)
   delivered Boolean @default(false)
 }
+
+
+
 

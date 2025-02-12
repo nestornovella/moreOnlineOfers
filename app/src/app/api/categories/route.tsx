@@ -4,36 +4,51 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function GET(params:NextRequest){
+export async function GET(request: NextRequest) {
     try {
-        const parentId = params.nextUrl.searchParams.get("parentId")
-        const categories = await prismaClient.category.findMany({
-            where: parentId? {parent:{id:parentId}}:{parentId:null},
-            include:{
-                subCategory:true,
-                parent:true
-            }
-        })
-        
+        const parentId = request.nextUrl.searchParams.get("parentId");
+
+        async function getCategoriesWithChilds(parentId: string | null = null):Promise<any> {
+
+            const categories = await prismaClient.category.findMany({
+                where:{parentId},
+                include:{
+                    parent:true,
+                    subCategory:true
+                }
+                
+            })
+           
+            return Promise.all(categories.map(async (category:any)=>({
+                ...category,
+                subCategory: await getCategoriesWithChilds(category.id)
+            })))
+
+        }
+
+        const categories = await getCategoriesWithChilds(parentId)
         return NextResponse.json(categories)
-    } catch (error) {
-        return NextResponse.json(error)
+
+    } catch (error: unknown) {
+        if(error instanceof Error)return NextResponse.json({error: error.message});
+        else return NextResponse.json('error inesperado')
     }
 }
-export async function POST(request:NextRequest){
+
+export async function POST(request: NextRequest) {
     try {
-        const {name, parentId} = await request.json()
+        const { name, parentId } = await request.json()
         const newCategory = await prismaClient.category.create({
-            data:{
+            data: {
                 name,
-                parent: parentId ?  {connect:{id: parentId}} : undefined
+                parent: parentId ? { connect: { id: parentId } } : undefined
             },
-            include:{
-                parent:true,
-                subCategory:true
+            include: {
+                parent: true,
+                subCategory: true
             }
         })
-        if(!newCategory) throw new Error('no se logro crear la categoria')
+        if (!newCategory) throw new Error('no se logro crear la categoria')
         return NextResponse.json(newCategory)
     } catch (error) {
         return NextResponse.json("error")
