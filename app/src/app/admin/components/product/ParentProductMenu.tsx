@@ -4,7 +4,7 @@ import Image from "next/image"
 
 
 
-function ParenProductModal({cb}:{cb:(id:string)=>void}) {
+function ParenProductModal({close, cb}:{cb:(id:string)=>void, close:()=> void}) {
 
     const { Products, findProduct } = useGetProduts()
 
@@ -24,7 +24,7 @@ function ParenProductModal({cb}:{cb:(id:string)=>void}) {
                         <div className="w-full ">
                             {
                                 Products.map(pr => {
-                                    return <ProductCardMenu cb={cb} key={pr.id} product={pr} />
+                                    return <ProductCardMenu close={close} cb={cb} key={pr.id} product={pr} />
                                 })
                             }
                         </div>
@@ -38,12 +38,12 @@ export default ParenProductModal
 
 
 
-function ProductCardMenu({ product, cb }: { product: ProductIF, cb:(id:string)=>void }) {
+function ProductCardMenu({ product, cb, close }: { product: ProductIF, cb:(id:string)=>void, close:()=>void }) {
 
     return (
         <div className="w-full flex border border-[--celeste] p-1 rounded-xl gap-2 items-center font-semibold">
             <Image className="size-[80px] rounded-2xl object-cover" src={`${product.image}`} width={300} quality={70} height={300} alt="" />
-            <div onClick={() => cb(product.id)} className=" w-full px-2">
+            <div onClick={() => {cb(product.id); close()}} className=" w-full px-2">
                 <h2 className="text-[--celeste]">{product.name}</h2>
             </div>
         </div>

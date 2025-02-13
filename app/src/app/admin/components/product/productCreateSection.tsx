@@ -4,20 +4,33 @@ import ImageViewerSection from "../ImageViwerSection"
 import Select from "../fields/selectCategory/Select"
 import TextArea from "../fields/TextArea"
 import useCreateHook from "../../hooks/createHook"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import MainModal from "../modals/MainModal"
 import ParenProductModal from "./ParentProductMenu"
+import ImageFileInput from "../fields/ImageFileInput"
+import Image from "next/image"
+import useGetProduts from "../../hooks/findProduct"
+import { MdDeleteOutline } from "react-icons/md";
 
 //create componente funcial
 function ProductCreateSection() {
-    const [ ToogleOpen, setToogleOpen ]= useState(false);
-    const { input, handleInput, handleProductParent, buildCategories, deleteCategory, handleCategoriesInput } = useCreateHook()
+    const [ToogleOpen, setToogleOpen] = useState(false);
+    const { input, handleInput, handleProductParent, buildCategories, deleteCategory, handleCategoriesInput, handleImage } = useCreateHook()
+    const { Product, findProductById } = useGetProduts()
 
-
-    console.log(input)
-    function toogleOpen(){
+   
+    function toogleOpen() {
         setToogleOpen((prev) => !prev)
     }
+
+    function close() {
+        setToogleOpen(false)
+    }
+    useEffect(() => {
+        if (input.parentId) {
+            findProductById(input.parentId)
+        }
+    }, [input.parentId])
 
     return (
         <div className="w-full min-h-full">
@@ -27,34 +40,52 @@ function ProductCreateSection() {
             <hr className="border-t-4 border-[--celeste] border-solid" />
 
             <div className=" w-full ">
-                <ImageViewerSection />
+                <ImageViewerSection input={input} />
                 <div className="flex gap-2 my-2 px-4">
                     <h2 className="text-white">estas creando una variedad?</h2>
-                    <div className="flex text-white gap-1 justify-center items-center">
-                        <h2>{ToogleOpen ? 'si' : 'no'}</h2>
-                        <input className="size-5" type="checkbox"  checked={ToogleOpen} onChange={toogleOpen} />
+                    <div className="flex flex-col  text-white gap-1 justify-center items-center">
+                        <div className="flex text-white gap-1 justify-center items-center">
+                            <h2>{input.parentId ? 'si' : 'no'}</h2>
+                            <input className="size-5" type="checkbox" checked={input.parentId ? true : false} onChange={toogleOpen} />
+                        </div>
+
                     </div>
                 </div>
-                    {
-                        ToogleOpen &&
-                        <div className="px-4 py-4">
-                            <h2 className="text-white">Selecciona Producto Principal</h2>
-                            <div>
-                                <MainModal state={false} cb={toogleOpen}>
-                                    <ParenProductModal cb={handleProductParent}/>
-                                </MainModal>
+                        {
+                            input.parentId &&
+                            <div className="p-4 flex flex-col gap-2">
+                                <h2 className="text-white">estas creando una variedad de:</h2>
+                                {
+                                    Product?.image &&
+                                    <div className="border rounded-xl p-2 border-[--celeste] flex justify-between items-center text-white ">
+                                        <Image className="size-[70] rounded-xl" alt="" src={Product.image} width={300} height={300} />
+                                        <h2 className="font-semibold">{Product.name}</h2>
+                                        <MdDeleteOutline onClick={()=> handleProductParent(null)} className="text-[--celeste] hover:text-red-600 size-8"/>
+                                    </div>
+
+                                }
+
                             </div>
+                        }
+                {
+                    ToogleOpen &&
+                    <div className="px-4 py-4">
+                        <h2 className="text-white">Selecciona Producto Principal</h2>
+                        <div>
+                            <MainModal state={false} cb={toogleOpen}>
+                                <ParenProductModal close={close} cb={handleProductParent} />
+                            </MainModal>
                         </div>
-                    }
+                    </div>
+                }
                 <PanelInputsContainer>
                     <PanelInputsContainer>
                         <TextInput label="Nombre" type="text" palceHolder="Escribe el nombre" value={input.name} name="name" onChange={handleInput} />
                         <TextInput label="Precio" type="number" palceHolder="Escribe el precio" value={input.price} name="price" onChange={handleInput} />
                     </PanelInputsContainer>
-                    <PanelInputsContainer>
-                        <TextInput label="category" type="email" palceHolder="Select category" value="" name="category" onChange={handleInput} />
-                        <TextInput label="Email" type="email" palceHolder="Email" value="" name="email" onChange={handleInput} />
-                    </PanelInputsContainer>
+                    <div className="p-2">
+                        <ImageFileInput cb={handleImage} />
+                    </div>
                 </PanelInputsContainer>
                 <div className="grid md:grid-cols-1 w-full px-4 mt-2">
                     <TextArea label={'Descripcion'} name='description' onChange={handleInput} palceHolder={'Escribe la descripcion del producto'} value={input.description} />

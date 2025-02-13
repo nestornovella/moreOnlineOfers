@@ -42,6 +42,9 @@ function useCreateHook() {
         return rebuildCategories
     }
 
+    function handleImage(url:string){
+        setinput(prev => ({...prev, image:url}))
+    }
     
 
     function handleInput(e: React.ChangeEvent<HTMLInputElement> |
@@ -96,7 +99,8 @@ function useCreateHook() {
         handleCategoriesInput,
         buildCategories,
         deleteCategory,
-        handleProductParent
+        handleProductParent,
+        handleImage
     }
 }
 

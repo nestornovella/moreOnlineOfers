@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "axios": "^1.7.9",
     "next": "15.1.6",
     "prisma": "^6.2.1",
     "prisma-client": "^0.0.0",

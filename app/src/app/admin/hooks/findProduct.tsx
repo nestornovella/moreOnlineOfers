@@ -8,15 +8,27 @@ import { useState } from 'react';
 
 function useGetProduts() {
     const [Products, setProducts] = useState<ProductIF[]>([])
-    const {products} = useProductStore()
+    const { products } = useProductStore()
+    const [Product, setProduct] = useState<ProductIF | null>(null)
 
-
-    function findProduct(name:string){
-        if(name){
-            setProducts(products.filter( (pr:ProductIF) => pr.name.toLowerCase().includes(name.toLowerCase()))) 
+    function findProduct(name: string) {
+        if (name) {
+            setProducts(products.filter((pr: ProductIF) => pr.name.toLowerCase().includes(name.toLowerCase())))
         }
-        else{
+        else {
             setProducts([])
+        }
+    }
+
+    function findProductById(id: string) {
+        if (id) {
+
+            const product = products.find((pr: ProductIF) => pr.id == id)
+            if (product) setProduct(product)
+
+        }
+        else {
+            setProduct(null)
         }
     }
 
@@ -24,9 +36,9 @@ function useGetProduts() {
 
     return {
         Products,
-        findProduct
-
-
+        Product,
+        findProduct,
+        findProductById
     }
 }
 
