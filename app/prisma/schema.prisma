@@ -17,6 +17,7 @@ model Product{
   parentId String? @db.Uuid 
   parent Product? @relation("productChild",fields: [parentId], references: [id], onDelete: Cascade)
   varieties Product[] @relation("productChild")
+  seller SellerProduct[] @relation("seller-product")
   price Float
   image String?
 }
@@ -34,9 +35,21 @@ model Seller{
   id String @id @default(uuid()) @db.Uuid
   name String 
   phoneNumber String
+  password String 
   porcent Float
   orders Order[] @relation("sellerOrder")
   admin Boolean @default(false)
+  products SellerProduct[] @relation("seller-item")
+}
+
+model SellerProduct{
+  id String @id @default(uuid()) @db.Uuid
+  porcent Float @default(0.0)
+  sellerId String? @db.Uuid
+  seller Seller? @relation("seller-item",fields: [sellerId], references: [id])
+  productId String @db.Uuid
+  product Product @relation("seller-product", fields: [productId], references: [id])
+  active Boolean @default(false)
 }
 
 model Order{

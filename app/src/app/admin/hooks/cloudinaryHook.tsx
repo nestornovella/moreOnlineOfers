@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import { getToast } from '@/helpers/toastofy';
 
 function useCloudinary() {
 
@@ -9,6 +10,7 @@ function useCloudinary() {
   const CLOUDINARY_PRESET = "z1kq1ogn"
 
   function uploadToCloudinary(file) {
+    getToast('info', 'cargando imagen...', 3000)
     const formData = new FormData()
     formData.append('file', file)
     formData.append('upload_preset', CLOUDINARY_PRESET)
@@ -19,9 +21,11 @@ function useCloudinary() {
         }
       })
         //.then(response => {console.log(response.data); return response})
-        .then(response => response.data.url)
+        .then(response => response)
+        .then((response) => {getToast('success', 'imagen cargada con exito', 3000) 
+          return response.data.url
+        })
         .catch(err => console.log(err))
-
     }
   }
 

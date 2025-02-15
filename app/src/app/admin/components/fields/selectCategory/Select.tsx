@@ -40,7 +40,6 @@ function Select({buildCategories, handleCategoriesInput, deleteCategory}) {
             return
         }
         const result = findSubCategories(categories, target.value)
-        console.log('->', result)
         if (result) {
             setSelected(result.subCategory)
             setBackCategory(result.parent)
@@ -55,11 +54,8 @@ function Select({buildCategories, handleCategoriesInput, deleteCategory}) {
 
     return (
         <div className="min-h-[100px]">
-            <h2 className=" text-[--celeste] text-2xl p-2" style={{ fontFamily: 'var(--font-opensans)' }}>
-                Seleccion de categorias
-            </h2>
-            <hr className="border-t-4 border-[--celeste] border-solid" />
-            <div className="text-white flex justify-center gap-4 p-5">
+            
+            <div className="text-[--celeste] flex justify-start gap-4 p-5">
                 <SelectMenu categories={categories} selected={selected} resetCategories={resetCategories} callBack={handleCategories} backCategory={backCategory} />
             </div>
             <div className="text-[--celeste] flex flex-wrap justify-center gap-2">

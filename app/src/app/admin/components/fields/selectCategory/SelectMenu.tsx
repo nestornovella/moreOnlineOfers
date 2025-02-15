@@ -40,11 +40,11 @@ function SelectMenu({ categories, selected, backCategory, callBack, resetCategor
 
   return (
     <div className="min-h-[50px]" ref={menuRef}>
-      <div className="border p-2 text-xl rounded w-full">
+      <div className="border border-[--celeste] flex items-center p-1 text-xl rounded w-full">
         <button onClick={handleOpenMenu} className="flex gap-2">
           <p>Seleccionar categoria</p>
-          <TiArrowUnsorted />
         </button>
+          <TiArrowUnsorted />
       </div>
       <div className={`min-h-[10px] border w-full ${!Open && 'hidden'}`}>
         {

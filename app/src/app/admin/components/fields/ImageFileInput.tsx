@@ -5,9 +5,8 @@ import useCloudinary from "../../hooks/cloudinaryHook"
 
 
 function ImageFileInput({ cb }: { cb: (url: string) => void }) {
-
     const { uploadToCloudinary } = useCloudinary()
-
+    
     async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0]
         const url = await uploadToCloudinary(file)

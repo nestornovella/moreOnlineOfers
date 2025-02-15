@@ -114,7 +114,7 @@ function useCreateHook() {
                 categories: [],
             })
             const response = await newProduct.json()
-            if(response.log)throw new Error(`no se logro crear el producto: ${response.error}`)
+            if(response.error)throw new Error(`no se logro crear el producto: ${response.error}`)
             
             getToast('success', 'producto creado con exito',4000)
             return { status: 201, response }
