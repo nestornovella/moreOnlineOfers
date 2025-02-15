@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         const product = await prismaClient.product.create({
             data: {
                 name,
-                price,
+                price: parseFloat(price),
                 categories:{
                     connect: categories.map( (id:string) => ({id}))
                 },
@@ -45,10 +45,10 @@ export async function POST(request: NextRequest) {
             }
         })
         if (!product) throw new Error('problemas para crear producto o asociarlo')
-        return NextResponse.json({ status: 200, data: product}, { status: 201 });
+        return NextResponse.json(product, { status: 201 });
     } catch (error) {
         if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 500 });
+            return NextResponse.json({ error: error.message }, { status:500});
         }
     }
 }

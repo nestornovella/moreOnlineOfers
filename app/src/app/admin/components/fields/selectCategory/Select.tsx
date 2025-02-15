@@ -54,7 +54,7 @@ function Select({buildCategories, handleCategoriesInput, deleteCategory}) {
 
 
     return (
-        <div className="min-h-[400px]">
+        <div className="min-h-[100px]">
             <h2 className=" text-[--celeste] text-2xl p-2" style={{ fontFamily: 'var(--font-opensans)' }}>
                 Seleccion de categorias
             </h2>

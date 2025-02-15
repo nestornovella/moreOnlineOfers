@@ -15,10 +15,10 @@ import { MdDeleteOutline } from "react-icons/md";
 //create componente funcial
 function ProductCreateSection() {
     const [ToogleOpen, setToogleOpen] = useState(false);
-    const { input, handleInput, handleProductParent, buildCategories, deleteCategory, handleCategoriesInput, handleImage } = useCreateHook()
+    const { input, handleInput, handleProductParent, buildCategories, deleteCategory, handleCategoriesInput, handleImage, submit } = useCreateHook()
     const { Product, findProductById } = useGetProduts()
 
-   
+
     function toogleOpen() {
         setToogleOpen((prev) => !prev)
     }
@@ -31,7 +31,7 @@ function ProductCreateSection() {
             findProductById(input.parentId)
         }
     }, [input.parentId])
-
+    console.log(input)
     return (
         <div className="w-full min-h-full">
             <h2 className=" text-[--celeste] text-2xl p-2" style={{ fontFamily: 'var(--font-opensans)' }}>
@@ -51,22 +51,22 @@ function ProductCreateSection() {
 
                     </div>
                 </div>
+                {
+                    input.parentId &&
+                    <div className="p-4 flex flex-col gap-2">
+                        <h2 className="text-white">estas creando una variedad de:</h2>
                         {
-                            input.parentId &&
-                            <div className="p-4 flex flex-col gap-2">
-                                <h2 className="text-white">estas creando una variedad de:</h2>
-                                {
-                                    Product?.image &&
-                                    <div className="border rounded-xl p-2 border-[--celeste] flex justify-between items-center text-white ">
-                                        <Image className="size-[70] rounded-xl" alt="" src={Product.image} width={300} height={300} />
-                                        <h2 className="font-semibold">{Product.name}</h2>
-                                        <MdDeleteOutline onClick={()=> handleProductParent(null)} className="text-[--celeste] hover:text-red-600 size-8"/>
-                                    </div>
-
-                                }
-
+                            Product?.image &&
+                            <div className="border rounded-xl p-2 border-[--celeste] flex justify-between items-center text-white ">
+                                <Image className="size-[70] rounded-xl" alt="" src={Product.image} width={300} height={300} />
+                                <h2 className="font-semibold">{Product.name}</h2>
+                                <MdDeleteOutline onClick={() => handleProductParent(null)} className="text-[--celeste] hover:text-red-600 size-8" />
                             </div>
+
                         }
+
+                    </div>
+                }
                 {
                     ToogleOpen &&
                     <div className="px-4 py-4">
@@ -83,7 +83,7 @@ function ProductCreateSection() {
                         <TextInput label="Nombre" type="text" palceHolder="Escribe el nombre" value={input.name} name="name" onChange={handleInput} />
                         <TextInput label="Precio" type="number" palceHolder="Escribe el precio" value={input.price} name="price" onChange={handleInput} />
                     </PanelInputsContainer>
-                    <div className="p-2">
+                    <div className="">
                         <ImageFileInput cb={handleImage} />
                     </div>
                 </PanelInputsContainer>
@@ -92,6 +92,10 @@ function ProductCreateSection() {
                 </div>
                 <Select buildCategories={buildCategories} deleteCategory={deleteCategory} handleCategoriesInput={handleCategoriesInput} />
             </div>
+                <div className="flex flex-col md:flex-row justify-around gap-2 my-4 md:px-20">
+                    <button onClick={submit} className="border border-[--celeste] rounded-xl p-2 text-[--celeste] font-semibold text-xl"> Crear Producto</button>
+                    <button className="border border-[--celeste] rounded-xl p-2 text-[--celeste] font-semibold text-xl"> Borrar todo</button>
+                </div>
         </div>
     )
 }

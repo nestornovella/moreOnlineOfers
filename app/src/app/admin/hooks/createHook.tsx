@@ -8,7 +8,7 @@ interface InputState {
     price: number;
     image: string;
     categories: string[];
-    parentId:null | string
+    parentId: null | string
 }
 
 function useCreateHook() {
@@ -29,9 +29,9 @@ function useCreateHook() {
         for (const category of categoriesId) {
             const founded = categories.find((cat: CategoryIF) => cat.id == category)
             if (founded) rebuildCategories.push(founded)
-            else{
+            else {
                 categories.forEach(ct => {
-                    if(ct.subCategory){
+                    if (ct.subCategory) {
                         const result = buildCategory(ct.subCategory, [category])
                         rebuildCategories = [...rebuildCategories, ...result]
                     }
@@ -42,39 +42,39 @@ function useCreateHook() {
         return rebuildCategories
     }
 
-    function handleImage(url:string){
-        setinput(prev => ({...prev, image:url}))
+    function handleImage(url: string) {
+        setinput(prev => ({ ...prev, image: url }))
     }
-    
+
 
     function handleInput(e: React.ChangeEvent<HTMLInputElement> |
         React.ChangeEvent<HTMLSelectElement>
-        | React.ChangeEvent<HTMLTextAreaElement> ) {
-           
+        | React.ChangeEvent<HTMLTextAreaElement>) {
+
         setinput({
             ...input,
             [e.target.name]: e.target.value
         })
     }
 
-    function handleProductParent(parentId: string | null){
+    function handleProductParent(parentId: string | null) {
 
-        if(parentId){
+        if (parentId) {
             setinput({
                 ...input,
                 parentId: parentId
             })
-        }else{
+        } else {
             setinput({
                 ...input,
-                parentId : null
+                parentId: null
             })
         }
     }
 
-    function handleCategoriesInput(id:string) {
-        const exist = [...input.categories].find( ct => ct == id)
-        if(!exist){
+    function handleCategoriesInput(id: string) {
+        const exist = [...input.categories].find(ct => ct == id)
+        if (!exist) {
             setBuildCategories(buildCategory(categories, [...input.categories, id]))
             setinput({
                 ...input,
@@ -83,7 +83,7 @@ function useCreateHook() {
         }
     }
 
-    function deleteCategory(id:string){
+    function deleteCategory(id: string) {
         setinput({
             ...input,
             categories: input.categories.filter(cat => cat != id)
@@ -93,6 +93,35 @@ function useCreateHook() {
 
     }
 
+
+    async function submit() {
+        try {
+            const newProduct = await fetch('/api/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(input)
+            })
+            setinput({
+                ...input,
+                name: '',
+                description: '',
+                price: 0,
+                image: '',
+                categories: [],
+            })
+            const response = await newProduct.json()
+            console.log(response.data)
+            return { status: 201, response }
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error(error.message)
+            }
+            return 500
+        }
+    }
+
     return {
         input,
         handleInput,
@@ -100,7 +129,8 @@ function useCreateHook() {
         buildCategories,
         deleteCategory,
         handleProductParent,
-        handleImage
+        handleImage,
+        submit
     }
 }
 

@@ -17,7 +17,7 @@ function ImageFileInput({ cb }: { cb: (url: string) => void }) {
     }
 
     return (
-        <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col gap-1 w-full">
             <label className="text-sm text-white font-semibold">Cargar Imagen</label>
             <input
                 onChange={handleFile}
