@@ -13,6 +13,7 @@ function ImageFileInput({ cb }: { cb: (url: string) => void }) {
         const url = await uploadToCloudinary(file)
         if (url) {
             cb(url)
+            e.target.value = ''
         }
     }
 
