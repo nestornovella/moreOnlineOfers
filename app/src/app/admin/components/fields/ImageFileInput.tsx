@@ -1,6 +1,6 @@
 import React from "react"
 import useCloudinary from "../../hooks/cloudinaryHook"
-
+import { IoMdCloudUpload } from "react-icons/io";
 
 
 
@@ -17,8 +17,11 @@ function ImageFileInput({ cb }: { cb: (url: string) => void }) {
     }
 
     return (
-        <div className="flex flex-col gap-1 w-full">
+        <div className="flex flex-col gap-1 w-full ">
+            <div className="flex items-center gap-2">
+            <IoMdCloudUpload className="size-5 text-[--celeste]"/>
             <label className="text-sm text-white font-semibold">Cargar Imagen</label>
+            </div>
             <input
                 onChange={handleFile}
                 type="file"

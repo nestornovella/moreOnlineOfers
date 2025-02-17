@@ -12,6 +12,7 @@ import Image from "next/image"
 import useGetProduts from "../../hooks/findProduct"
 import { MdDeleteOutline } from "react-icons/md";
 
+
 //create componente funcial
 function ProductCreateSection() {
     const [ToogleOpen, setToogleOpen] = useState(false);
