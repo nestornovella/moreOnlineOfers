@@ -1,5 +1,6 @@
 import { CategoryIF } from '@/app/intefaces/modelsIntefaces';
 import { useCategoryStore } from '@/app/store/categoryStore';
+import { getToast } from '@/helpers/toastofy';
 import React, { useEffect, useState } from 'react';
 
 interface InputState {
@@ -96,6 +97,7 @@ function useCreateHook() {
 
     async function submit() {
         try {
+            getToast('info', 'se esta creando el producto...', 3000)
             const newProduct = await fetch('/api/products', {
                 method: 'POST',
                 headers: {
@@ -112,13 +114,18 @@ function useCreateHook() {
                 categories: [],
             })
             const response = await newProduct.json()
-            console.log(response.data)
+            if(response.error)throw new Error(`no se logro crear el producto: ${response.error}`)
+            
+            getToast('success', 'producto creado con exito',4000)
             return { status: 201, response }
         } catch (error) {
             if (error instanceof Error) {
-                console.error(error.message)
+                
+                console.log(error.message)
             }
-            return 500
+            if(error instanceof Error)
+            getToast('error', error.message, 4000)
+            return 300
         }
     }
 

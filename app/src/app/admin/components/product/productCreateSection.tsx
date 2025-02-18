@@ -12,6 +12,7 @@ import Image from "next/image"
 import useGetProduts from "../../hooks/findProduct"
 import { MdDeleteOutline } from "react-icons/md";
 
+
 //create componente funcial
 function ProductCreateSection() {
     const [ToogleOpen, setToogleOpen] = useState(false);
@@ -93,8 +94,7 @@ function ProductCreateSection() {
                 <Select buildCategories={buildCategories} deleteCategory={deleteCategory} handleCategoriesInput={handleCategoriesInput} />
             </div>
                 <div className="flex flex-col md:flex-row justify-around gap-2 my-4 md:px-20">
-                    <button onClick={submit} className="border border-[--celeste] rounded-xl p-2 text-[--celeste] font-semibold text-xl"> Crear Producto</button>
-                    <button className="border border-[--celeste] rounded-xl p-2 text-[--celeste] font-semibold text-xl"> Borrar todo</button>
+                    <button onClick={submit} className="border hover:border-blue-500 border-[--celeste] rounded-xl p-2 bg-[--celeste] font-semibold text-md"> Crear Producto</button>
                 </div>
         </div>
     )

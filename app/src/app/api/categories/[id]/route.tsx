@@ -21,36 +21,12 @@ export async function GET(request: NextRequest, { params }: Params) {
 
 export async function PUT(request: NextRequest, { params }: Params) {
   try {
-    const { id } = await params;
+    const { id } =  params;
     const body = await request.json();
-    const subCat = await Promise.all(
-      body.subCategory.map(async (subCatName: string) => {
-        const existingSubCategory = await prismaClient.category.findFirst({
-          where: { name: subCatName },
-        });
-
-        if (existingSubCategory) {
-          return { id: existingSubCategory.id };
-        } else {
-          const newSubCategory = await prismaClient.category.create({
-            data: {
-              name: subCatName,
-              parent: { connect: { id } }, 
-            },
-          });
-          return { id: newSubCategory.id };
-        }
-      })
-    );
-
+    
     const updated = await prismaClient.category.update({
       where: { id },
-      data: {
-        name: body.name,
-        subCategory: {
-          set: subCat,
-        },
-      },
+      data: body,
       include: { subCategory: true },
     });
 
@@ -73,3 +49,5 @@ export async function DELETE(request: NextRequest, {params}: Params) {
     }
   }
 }
+
+

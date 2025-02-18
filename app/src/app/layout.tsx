@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Open_Sans } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 
 const openSans = Open_Sans({
   variable: "--font-opensans",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body
         className={`${openSans.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ToastContainer/>
         {children}
       </body>
     </html>
