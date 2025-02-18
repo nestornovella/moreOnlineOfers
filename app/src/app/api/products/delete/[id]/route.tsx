@@ -1,14 +1,13 @@
 import { prismaClient } from "@/helpers/singeltonPrisma/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
+import { Params } from "@/app/api/interfaces";
 
 
-
-export async function DELETE(request: NextRequest, {params}:{params:{id:string}}) {
+export async function DELETE(request: NextRequest, {params}: Params) {
     try {
+        const {id} = params;
         const deleted = await prismaClient.product.delete({
-            where:{
-                id: params.id
-            }
+            where:{id}
         })
         console.log(deleted)
         return NextResponse.json({ message: 'Deleted' }, { status: 200 });

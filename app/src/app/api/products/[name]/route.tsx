@@ -1,12 +1,12 @@
 import { prismaClient } from '@/helpers/singeltonPrisma/prismaClient';
 import { NextRequest, NextResponse } from 'next/server';
+import { Params } from '@/app/api/interfaces';
 
 
-
-export async function GET(request: NextRequest, { params }: { params: { name: string } }) {
+export async function GET(request: NextRequest, { params }: Params) {
 
     try {
-        const { name } = params
+        const { name } = params;
 
         if(!name) return NextResponse.json([], { status: 200 });
 

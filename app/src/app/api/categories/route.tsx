@@ -37,19 +37,21 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
-        const { name, parentId } = await request.json()
-        const newCategory = await prismaClient.category.create({
-            data: {
+        const { name, parentId } = await request.json();
+        if(!name) throw new Error("el nombre es requerido para crear la categoria");
+        const newCategory = await prismaClient.category.upsert({
+            where: {name},
+            create: {
                 name,
                 parent: parentId ? { connect: { id: parentId } } : undefined
             },
+            update: {},
             include: {
                 parent: true,
                 subCategory: true
             }
         })
-        if (!newCategory) throw new Error('no se logro crear la categoria')
-        return NextResponse.json(newCategory)
+        return NextResponse.json(newCategory, {status: 201});
     } catch (error) {
         return NextResponse.json("error")
     }

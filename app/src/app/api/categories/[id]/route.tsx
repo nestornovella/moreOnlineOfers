@@ -1,8 +1,8 @@
 import { prismaClient } from "@/helpers/singeltonPrisma/prismaClient";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { Params } from "../../interfaces";
 
-export async function GET(request: Request, { params }: Params) {
+export async function GET(request: NextRequest, { params }: Params) {
   try {
     const { id } = params;
     const category = await prismaClient.category.findUnique({
@@ -19,7 +19,7 @@ export async function GET(request: Request, { params }: Params) {
   }
 }
 
-export async function PUT(request: Request, { params }: Params) {
+export async function PUT(request: NextRequest, { params }: Params) {
   try {
     const { id } = await params;
     const body = await request.json();
@@ -62,7 +62,7 @@ export async function PUT(request: Request, { params }: Params) {
   }
 }
 
-export async function DELETE(request: Request, {params}: Params) {
+export async function DELETE(request: NextRequest, {params}: Params) {
   try {
     const {id} = await params;
     const deletedCategory = await prismaClient.category.delete({where: {id}});
