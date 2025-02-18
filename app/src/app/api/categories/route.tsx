@@ -2,8 +2,6 @@ import { prismaClient } from "@/helpers/singeltonPrisma/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
 
-
-
 export async function GET(request: NextRequest) {
     try {
         const parentId = request.nextUrl.searchParams.get("parentId");
@@ -27,11 +25,12 @@ export async function GET(request: NextRequest) {
         }
 
         const categories = await getCategoriesWithChilds(parentId)
-        return NextResponse.json(categories)
+        return NextResponse.json(categories, {status: 202});
 
     } catch (error: unknown) {
-        if(error instanceof Error)return NextResponse.json({error: error.message});
-        else return NextResponse.json('error inesperado')
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status:500});
+        }
     }
 }
 
@@ -53,6 +52,8 @@ export async function POST(request: NextRequest) {
         })
         return NextResponse.json(newCategory, {status: 201});
     } catch (error) {
-        return NextResponse.json("error")
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status:500});
+        }
     }
 }
