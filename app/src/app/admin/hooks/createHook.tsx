@@ -10,6 +10,8 @@ interface InputState {
     image: string;
     categories: string[];
     parentId: null | string
+    newCategory: string
+    parentCategory: string
 }
 
 function useCreateHook() {
@@ -19,7 +21,9 @@ function useCreateHook() {
         price: 0,
         image: '',
         categories: [],
-        parentId: null
+        parentId: null,
+        newCategory: '',
+        parentCategory: ''
     });
     const [buildCategories, setBuildCategories] = useState<CategoryIF[]>([])
 
@@ -114,30 +118,90 @@ function useCreateHook() {
                 categories: [],
             })
             const response = await newProduct.json()
-            if(response.error)throw new Error(`no se logro crear el producto: ${response.error}`)
-            
-            getToast('success', 'producto creado con exito',4000)
+            if (response.error) throw new Error(`no se logro crear el producto: ${response.error}`)
+
+            getToast('success', 'producto creado con exito', 4000)
+            getToast('loading', 'se esta creando el producto...', 3000)
             return { status: 201, response }
         } catch (error) {
             if (error instanceof Error) {
-                
+
                 console.log(error.message)
             }
-            if(error instanceof Error)
-            getToast('error', error.message, 4000)
+            if (error instanceof Error)
+                getToast('error', error.message, 4000)
             return 300
         }
     }
 
+
+    //category methods
+
+    function resetInput() {
+        setinput(
+            {
+                name: '',
+                description: '',
+                price: 0,
+                image: '',
+                categories: [],
+                parentId: null,
+                newCategory: '',
+                parentCategory: ''
+            }
+        )
+        setBuildCategories([])
+    }
+
+    async function submitCategories() {
+        try {
+            const response = await fetch('/api/categories', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: input.newCategory,
+                    parentId: buildCategories[0] ? buildCategories[0].id : null
+                })
+
+            })
+            const responseJson = await response.json()
+            if (responseJson.error) throw new Error(responseJson.error)
+            getToast('success', 'categoria creada con exito', 4000)
+            return { status: 201, response: responseJson }
+        } catch (error) {
+            if (error instanceof Error) {
+                getToast('error', error.message, 4000)
+            }
+            return 300
+        }
+    }
+
+    function handleCreategorySelected(id: string) {
+
+        setinput({
+            ...input,
+            parentCategory: id
+        })
+
+        setBuildCategories(buildCategory(categories, [id]))
+
+    }
+
+
     return {
         input,
+        resetInput,
         handleInput,
         handleCategoriesInput,
         buildCategories,
         deleteCategory,
         handleProductParent,
         handleImage,
-        submit
+        submit,
+        handleCreategorySelected,
+        submitCategories
     }
 }
 

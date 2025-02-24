@@ -38,6 +38,8 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
     try {
         const { name, parentId } = await request.json()
+        if(!name) throw new Error('no se envio el nombre de la categoria')
+
         const newCategory = await prismaClient.category.create({
             data: {
                 name,
@@ -51,6 +53,7 @@ export async function POST(request: NextRequest) {
         if (!newCategory) throw new Error('no se logro crear la categoria')
         return NextResponse.json(newCategory)
     } catch (error) {
-        return NextResponse.json("error")
+        if (error instanceof Error)
+        return NextResponse.json({ error: error.message })
     }
 }

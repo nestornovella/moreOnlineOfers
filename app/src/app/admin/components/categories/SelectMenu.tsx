@@ -40,7 +40,7 @@ function SelectMenu({ categories, selected, backCategory, callBack, resetCategor
 
   return (
     <div className="min-h-[50px]" ref={menuRef}>
-      <div className="border border-[--celeste] bg-[--celeste] text-black font-semibold flex items-center p-1 text-xl rounded w-full">
+      <div className="border border-[--celeste] bg-[--celeste] text-black font-semibold flex items-center p-1 text-md rounded w-full">
         <button onClick={handleOpenMenu} className="flex gap-2">
           <p>Seleccionar categoria</p>
         </button>

@@ -1,6 +1,6 @@
 import { toast, Bounce, ToastOptions } from 'react-toastify';
 
-type TypeIF = 'success' | 'error' | 'info' | 'warning';
+type TypeIF = 'success' | 'error' | 'info' | 'warning' | 'loading';
 type TimeIf = 2000 | 3000 | 4000 | 5000 
 
 const defaultToastOptions: ToastOptions = {
@@ -21,6 +21,7 @@ export function getToast(type: TypeIF, message: string = "", time:TimeIf) {
     error: toast.error,
     warning: toast.warning,
     info: toast.info,
+    loading: toast.loading
   };
 
   const showToast = toastTypes[type] ?? toast.success;

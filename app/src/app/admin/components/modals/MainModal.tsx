@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react"
 interface PropsIF {
     cb:null | (() => void) 
     children: React.ReactNode
-    state: boolean
+    state: boolean,
+    isOpen: boolean
 }
 
-function MainModal({ children, state = false, cb = null }: PropsIF) {
+function MainModal({ children, state = false, isOpen, cb = null }: PropsIF) {
 
     const [ ToogleOpen, setToogleOpen ] = useState(true);
     const className = 'flex fixed z-[100] w-screen h-screen bg-black/50 top-0 left-0 justify-center items-center'
@@ -28,6 +29,7 @@ function MainModal({ children, state = false, cb = null }: PropsIF) {
         <>  
             {
                 !state ?
+                    isOpen &&
                     <div onClick={cb as ()=>void} className={className} >
                         {children}
                     </div >
