@@ -45,11 +45,7 @@ export async function POST(request: NextRequest) {
                 parent: parentId ? { connect: { id: parentId } } : undefined
             },
             update: {},
-            include: {
-                parent: true,
-                subCategory: true
-            }
-        })
+        });
         return NextResponse.json(newCategory, {status: 201});
     } catch (error) {
         if (error instanceof Error) {

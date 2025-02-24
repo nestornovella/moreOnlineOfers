@@ -50,6 +50,7 @@ model SellerProduct{
   productId String @db.Uuid
   product Product @relation("seller-product", fields: [productId], references: [id])
   active Boolean @default(false)
+  @@unique([sellerId, productId])
 }
 
 model Order{

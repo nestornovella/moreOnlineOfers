@@ -14,16 +14,19 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const {name, phoneNumber, porcent} = await request.json();
-    if(!name || !phoneNumber || !porcent) {
+    const {name, phoneNumber, porcent, password} = await request.json();
+    if(!name || !phoneNumber || !porcent || !password) {
       return NextResponse.json({message: "faltan datos para crear el vendedor"}, {status: 400});
     }
-    /* const seller = await prismaClient.seller.create({
+    const seller = await prismaClient.seller.create({
       data: {
-
+        name,
+        phoneNumber,
+        porcent,
+        password
       }
     }) 
-    return NextResponse.json(seller, {status: 201});*/
+    return NextResponse.json(seller, {status: 201});
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
