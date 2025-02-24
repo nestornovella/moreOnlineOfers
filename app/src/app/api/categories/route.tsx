@@ -2,8 +2,6 @@ import { prismaClient } from "@/helpers/singeltonPrisma/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
 
-
-
 export async function GET(request: NextRequest) {
     try {
         const parentId = request.nextUrl.searchParams.get("parentId");
@@ -27,33 +25,31 @@ export async function GET(request: NextRequest) {
         }
 
         const categories = await getCategoriesWithChilds(parentId)
-        return NextResponse.json(categories)
+        return NextResponse.json(categories, {status: 202});
 
     } catch (error: unknown) {
-        if(error instanceof Error)return NextResponse.json({error: error.message});
-        else return NextResponse.json('error inesperado')
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status:500});
+        }
     }
 }
 
 export async function POST(request: NextRequest) {
     try {
-        const { name, parentId } = await request.json()
-        if(!name) throw new Error('no se envio el nombre de la categoria')
-
-        const newCategory = await prismaClient.category.create({
-            data: {
+        const { name, parentId } = await request.json();
+        if(!name) throw new Error("el nombre es requerido para crear la categoria");
+        const newCategory = await prismaClient.category.upsert({
+            where: {name},
+            create: {
                 name,
                 parent: parentId ? { connect: { id: parentId } } : undefined
             },
-            include: {
-                parent: true,
-                subCategory: true
-            }
-        })
-        if (!newCategory) throw new Error('no se logro crear la categoria')
-        return NextResponse.json(newCategory)
+            update: {},
+        });
+        return NextResponse.json(newCategory, {status: 201});
     } catch (error) {
-        if (error instanceof Error)
-        return NextResponse.json({ error: error.message })
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status:500});
+        }
     }
 }

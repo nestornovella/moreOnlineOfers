@@ -53,15 +53,3 @@ export async function POST(request: NextRequest) {
     }
 }
 
-
-export async function PUT() {
-    try {
-
-        return NextResponse.json({ message: 'Updated' }, { status: 200 });
-    } catch (error) {
-        if (error instanceof Error) {
-            return NextResponse.json({ error: error.message }, { status: 500 });
-        }
-    }
-}
-

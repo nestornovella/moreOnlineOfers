@@ -3,8 +3,6 @@ import { prismaClient } from "@/helpers/singeltonPrisma/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
 
-
-
 export async function PUT(request:NextRequest, {params}:Params) {
     try {
        
@@ -23,16 +21,13 @@ export async function PUT(request:NextRequest, {params}:Params) {
     }
 }
 
-
-
-export async function DELETE(request: NextRequest, {params}:{params:{id:string}}) {
+export async function DELETE(request: NextRequest, {params}: Params) {
     try {
+        const {id} = params;
         const deleted = await prismaClient.product.delete({
-            where:{
-                id: params.id
-            }
+            where:{id}
         })
-        return NextResponse.json({ message: 'Deleted' }, { status: 200 });
+        return NextResponse.json({message: "producto eliminado", deleted}, { status: 204 });
     } catch (error) {
         if (error instanceof Error) {
             return NextResponse.json({ error: error.message }, { status: 500 });
