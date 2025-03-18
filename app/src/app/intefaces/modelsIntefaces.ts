@@ -1,6 +1,6 @@
 
 
-export interface CategoryIF{
+export interface CategoryIF {
     id: string
     name: string
     products: ProductIF[]
@@ -9,9 +9,20 @@ export interface CategoryIF{
     subCategory: CategoryIF[]
 }
 
-export interface ProductIF{
+enum MeasureUnit {
+    Gr,   // Gramos
+    Kg,   // Kilogramos
+    Mg,   // Miligramos
+    Lb,  // Libras
+    Oz, // Onzas
+    Ml,// Mililitros
+    L,// Litros
+    Cm3,// Centímetros cúbicos
+}
+
+export interface ProductIF {
     id: string
-    name: string 
+    name: string
     description?: string
     categories: CategoryIF[]
     parentId?: string
@@ -19,18 +30,20 @@ export interface ProductIF{
     varieties: ProductIF[]
     price: number
     image?: string
+    measureUnits: MeasureUnit
+    measureValue: number
 }
 
-export interface SellerIF{
+export interface SellerIF {
     id: string
-    name: string 
+    name: string
     phoneNumber: string
     porcent: number
     orders: OrderIF[]
     admin: boolean
 }
 
-export interface OrderIF{
+export interface OrderIF {
     id: string
     order: any
     total: number

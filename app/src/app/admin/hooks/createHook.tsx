@@ -27,7 +27,7 @@ function useCreateHook() {
     });
     const [buildCategories, setBuildCategories] = useState<CategoryIF[]>([])
 
-    const { categories } = useCategoryStore()
+    const { categories, initialCharge } = useCategoryStore()
 
     function buildCategory(categories: CategoryIF[], categoriesId: string[]) {
         let rebuildCategories: CategoryIF[] = []
@@ -168,6 +168,7 @@ function useCreateHook() {
             })
             const responseJson = await response.json()
             if (responseJson.error) throw new Error(responseJson.error)
+            initialCharge()
             getToast('success', 'categoria creada con exito', 4000)
             return { status: 201, response: responseJson }
         } catch (error) {

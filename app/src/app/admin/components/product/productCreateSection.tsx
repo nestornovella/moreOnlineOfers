@@ -1,3 +1,5 @@
+'use client'
+
 import TextInput from "@/app/admin/components/fields/TextInput"
 import PanelInputsContainer from "../containers/PanelInputsContainer"
 import ImageViewerSection from "../ImageViwerSection"
@@ -13,6 +15,8 @@ import useGetProduts from "../../hooks/findProduct"
 import { MdDeleteOutline } from "react-icons/md";
 import { FaUpload } from "react-icons/fa";
 import CreateCategory from "../categories/CreateCategory"
+import categoryImage from "@/app/assets/category.png"
+
 
 //create componente funcial
 function ProductCreateSection() {
@@ -25,7 +29,7 @@ function ProductCreateSection() {
     function toogleOpen() {
         setToogleOpen((prev) => !prev)
     }
-    
+
     function close() {
         setToogleOpen(false)
     }
@@ -107,9 +111,18 @@ function ProductCreateSection() {
                         </div>
                     </>
                 }
-                <div className={`${openCategoryCreateSection && 'border m-4 border-blue-500 rounded-xl p-2'}`}>
-                    <CreateCategory input={input} cb={handleInput} buildCategory={buildCategories} isOpen={openCategoryCreateSection} toogleOpen={handleOpenCategory} submit={submitCategories} />
-                    <Select buildCategories={buildCategories} deleteCategory={deleteCategory} handleCategoriesInput={!openCategoryCreateSection ? handleCategoriesInput : handleCreategorySelected} />
+                <div className={`${openCategoryCreateSection && 'border m-4 border-[--celeste] rounded-xl p-4'}`}>
+                    <div>
+                        <CreateCategory input={input} cb={handleInput} buildCategory={buildCategories} isOpen={openCategoryCreateSection} toogleOpen={handleOpenCategory} submit={submitCategories} />
+                        <Select buildCategories={buildCategories} deleteCategory={deleteCategory} handleCategoriesInput={!openCategoryCreateSection ? handleCategoriesInput : handleCreategorySelected} />
+                        {
+                            openCategoryCreateSection &&
+                            <button onClick={submitCategories} className=" border text-white font-bold  hover:bg-black hover:border-[--celeste] bg-[--celeste] rounded-xl my-4 p-2 m-auto block mt-4"> Crear Categoria</button>
+                        }
+                    </div>
+                    
+
+
                 </div>
             </div>
             {

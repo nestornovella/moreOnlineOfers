@@ -9,6 +9,18 @@ datasource db {
 }
 
 
+enum MeasureUnit {
+  Gr   // Gramos
+  Kg   // Kilogramos
+  Mg   // Miligramos
+  Lb   // Libras
+  Oz   // Onzas
+  Ml   // Mililitros
+  L    // Litros
+  Cm3  // Centímetros cúbicos
+}
+
+
 model Product{
   id String @id @default(uuid()) @db.Uuid
   name String 
@@ -20,7 +32,10 @@ model Product{
   seller SellerProduct[] @relation("seller-product")
   price Float
   image String?
+  measureUnits MeasureUnit? 
+  measureValue Float?
 }
+
 
 model Category{
   id String @id @default(uuid()) @db.Uuid

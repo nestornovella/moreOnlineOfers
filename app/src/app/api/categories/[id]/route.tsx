@@ -40,8 +40,13 @@ export async function PUT(request: NextRequest, { params }: Params) {
 
 export async function DELETE(request: NextRequest, {params}: Params) {
   try {
+    
     const {id} = await params;
+    const categoryExist = await prismaClient.category.findUnique({where:{id}})
+    if (!categoryExist) throw new Error('la categoria no existe')
+
     const deletedCategory = await prismaClient.category.delete({where: {id}});
+      
     return NextResponse.json(deletedCategory, {status: 200});
   } catch (error) {
     if (error instanceof Error) {

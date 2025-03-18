@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react";
 import TextInput from "../fields/TextInput";
 import MainModal from "../modals/MainModal";
@@ -53,7 +55,6 @@ function CreateCategory({ input, cb, buildCategory, isOpen, toogleOpen, submit }
                             </p>
                         </div>
                     }
-                    <button onClick={submit} className="border border-blue-500 rounded-xl p-2 m-auto block mt-4"> Crear Categoria</button>
                 </div>
             }
 

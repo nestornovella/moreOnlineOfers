@@ -1,3 +1,4 @@
+'use client'
 import { useCategoryStore } from "@/app/store/categoryStore"
 import { useEffect, useState } from "react"
 import SelectMenu from "./SelectMenu"

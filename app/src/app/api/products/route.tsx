@@ -24,11 +24,12 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
     try {
-        const { name, price, categories, description, image, parentId } = await request.json()
+        const { name, price, categories, description, image, parentId, measureUnits, measureValue } = await request.json()
         if (!categories.length) throw new Error('categorias requeridas')
         if (!image) throw new Error('imagen requerida')
         if (!name) throw new Error('nombre requerido')
         if (!price) throw new Error('precio requerido')
+        
         const product = await prismaClient.product.create({
             data: {
                 name,
@@ -40,7 +41,9 @@ export async function POST(request: NextRequest) {
                 image,
                 parent:{
                     connect: parentId ? {id:parentId} : undefined
-                }
+                },
+                measureUnits:!measureUnits ? "Gr" : measureUnits,
+                measureValue:!measureValue ? 500 : measureValue
 
             }
         })

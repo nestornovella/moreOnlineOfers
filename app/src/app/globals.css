@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 :root{
-    --background: rgb(19, 18, 18);
-    --celeste: #4ff8bd
+    --background: linear-gradient(157deg, rgba(3,3,3,1) 39%, rgba(27,27,27,1) 100%);
+    --celeste: rgb(16, 193, 237);
+    --rosado:#FF5757;
+    --azul:#042698;
+    --verde: rgb(8, 180, 242);
 }
 
 body{
-    background-color:var(--background);
+    background:var(--background);
 }
