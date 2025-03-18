@@ -15,7 +15,7 @@ import useGetProduts from "../../hooks/findProduct"
 import { MdDeleteOutline } from "react-icons/md";
 import { FaUpload } from "react-icons/fa";
 import CreateCategory from "../categories/CreateCategory"
-import categoryImage from "@/app/assets/category.png"
+
 
 
 //create componente funcial

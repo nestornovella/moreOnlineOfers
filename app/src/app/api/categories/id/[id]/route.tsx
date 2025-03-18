@@ -1,6 +1,11 @@
 import { prismaClient } from "@/helpers/singeltonPrisma/prismaClient";
 import { NextResponse, NextRequest } from "next/server";
-import { Params } from "../../interfaces";
+
+interface Params {
+  params:{
+    id:string
+  }
+}
 
 export async function GET(request: NextRequest, { params }: Params) {
   try {

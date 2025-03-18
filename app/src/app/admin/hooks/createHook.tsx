@@ -1,7 +1,7 @@
 import { CategoryIF } from '@/app/intefaces/modelsIntefaces';
 import { useCategoryStore } from '@/app/store/categoryStore';
 import { getToast } from '@/helpers/toastofy';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 interface InputState {
     name: string;

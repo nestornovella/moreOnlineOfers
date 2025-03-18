@@ -3,7 +3,6 @@ import { useEffect } from "react"
 import { useCategoryStore } from "../store/categoryStore"
 import ProductsCategoryRender from "./render/ProductsCategoryReder"
 import { useProductStore } from "../store/productsStore"
-import LoadingCard from "./card/LoadingCard"
 import LoadingSection from "./card/LoadingCard"
 
 

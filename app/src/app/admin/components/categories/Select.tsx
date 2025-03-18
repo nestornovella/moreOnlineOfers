@@ -1,6 +1,6 @@
 'use client'
 import { useCategoryStore } from "@/app/store/categoryStore"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import SelectMenu from "./SelectMenu"
 import { MdDeleteOutline } from "react-icons/md";
 import { CategoryIF } from "@/app/intefaces/modelsIntefaces";

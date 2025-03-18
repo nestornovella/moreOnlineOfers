@@ -1,13 +1,12 @@
 'use client'
 
 import { ProductIF } from "@/app/intefaces/modelsIntefaces"
-import { GetCart, useCartStore } from "@/app/store/cartStore"
+import {  useCartStore } from "@/app/store/cartStore"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import Styles from '@/app/carrito/carrito.module.css'
 import cartImage from '@/app/assets/sinProducts.png'
-import MainContainer from "../components/containers/MainContainer"
 import { ImWhatsapp } from "react-icons/im"
 
 function Carrito() {

@@ -1,6 +1,4 @@
 import { CategoryIF, ProductIF } from "@/app/intefaces/modelsIntefaces"
-import useGetProduts from "../../hooks/findProduct"
-import Image from "next/image"
 import useCategoriesHook from "../../hooks/categoriesHook"
 
 
