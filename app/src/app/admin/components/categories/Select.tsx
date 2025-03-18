@@ -9,7 +9,7 @@ import { CategoryIF } from "@/app/intefaces/modelsIntefaces";
 
 function findSubCategories(categories:CategoryIF[], categoryId: string) {
 
-    const category = categories.find((cat: any) => cat.id == categoryId)
+    const category = categories.find((cat: CategoryIF) => cat.id == categoryId)
     if (category) return category
 
     for (const cat of categories) {
@@ -24,8 +24,8 @@ function Select({buildCategories, handleCategoriesInput, deleteCategory}) {
     const { categories } = useCategoryStore()
     
 
-    const [selected, setSelected] = useState<any[] | null>(null);
-    const [backCategory, setBackCategory] = useState<any | null>(null);
+    const [selected, setSelected] = useState<CategoryIF[] | null>(null);
+    const [backCategory, setBackCategory] = useState<CategoryIF | null>(null);
 
 
     

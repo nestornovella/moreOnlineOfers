@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
     try {
         const parentId = request.nextUrl.searchParams.get("parentId");
 
-        async function getCategoriesWithChilds(parentId: string | null = null):Promise<any> {
+        async function getCategoriesWithChilds(parentId: string | null = null){
 
             const categories = await prismaClient.category.findMany({
                 where:{parentId},
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
                 
             })
            
-            return Promise.all(categories.map(async (category:any)=>({
+            return Promise.all(categories.map(async (category)=>({
                 ...category,
                 subCategory: await getCategoriesWithChilds(category.id)
             })))

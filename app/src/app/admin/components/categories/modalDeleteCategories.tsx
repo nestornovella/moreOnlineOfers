@@ -1,4 +1,4 @@
-import { CategoryIF, ProductIF } from "@/app/intefaces/modelsIntefaces"
+import { CategoryIF } from "@/app/intefaces/modelsIntefaces"
 import useCategoriesHook from "../../hooks/categoriesHook"
 
 

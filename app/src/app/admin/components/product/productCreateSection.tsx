@@ -113,7 +113,7 @@ function ProductCreateSection() {
                 }
                 <div className={`${openCategoryCreateSection && 'border m-4 border-[--celeste] rounded-xl p-4'}`}>
                     <div>
-                        <CreateCategory input={input} cb={handleInput} buildCategory={buildCategories} isOpen={openCategoryCreateSection} toogleOpen={handleOpenCategory} submit={submitCategories} />
+                        <CreateCategory input={input} cb={handleInput} buildCategory={buildCategories} isOpen={openCategoryCreateSection} toogleOpen={handleOpenCategory} />
                         <Select buildCategories={buildCategories} deleteCategory={deleteCategory} handleCategoriesInput={!openCategoryCreateSection ? handleCategoriesInput : handleCreategorySelected} />
                         {
                             openCategoryCreateSection &&

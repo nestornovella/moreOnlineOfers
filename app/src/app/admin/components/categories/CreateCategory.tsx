@@ -7,7 +7,7 @@ import ModalDeleteCategories from "./modalDeleteCategories";
 
 
 
-function CreateCategory({ input, cb, buildCategory, isOpen, toogleOpen, submit }) {
+function CreateCategory({ input, cb, buildCategory, isOpen, toogleOpen }) {
 
     const [open, setOpen] = useState(false)
 

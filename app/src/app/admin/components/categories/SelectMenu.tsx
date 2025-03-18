@@ -7,7 +7,7 @@ import { TiArrowUnsorted } from "react-icons/ti";
 interface PropsIF {
   categories: CategoryIF[],
   selected: CategoryIF[] | null
-  callBack: (e: any) => void
+  callBack: (e) => void
   backCategory: CategoryIF,
   resetCategories: ()=> void
 }
