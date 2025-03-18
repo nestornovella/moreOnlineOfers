@@ -5,9 +5,7 @@ import TextInput from "../fields/TextInput";
 import MainModal from "../modals/MainModal";
 import ModalDeleteCategories from "./modalDeleteCategories";
 
-interface PropIF {
-    cb: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
+
 
 function CreateCategory({ input, cb, buildCategory, isOpen, toogleOpen, submit }) {
 

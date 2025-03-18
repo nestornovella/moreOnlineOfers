@@ -4,7 +4,6 @@ import "./globals.css";
 
 import { Open_Sans } from "next/font/google";
 import { ToastContainer } from "react-toastify";
-import {Dangrek} from "next/font/google"
 import NavBar from "./components/nav/NavBar";
 
 
