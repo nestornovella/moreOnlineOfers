@@ -1,8 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prismaClient } from "@/helpers/singeltonPrisma/prismaClient";
-import { Params } from "@/app/api/interfaces";
 
-export async function GET(request: NextRequest, {params}: Params) {
+
+export async function GET(request: NextRequest, {params}) {
   try {
     const {name} = params;
     const categoryName = await prismaClient.category.findFirst({
