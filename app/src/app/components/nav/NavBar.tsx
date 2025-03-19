@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import bag from '@/app/assets/bagLogo.png'
-import { useProductStore } from "@/app/store/productsStore"
 import { useCartStore } from "@/app/store/cartStore"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"

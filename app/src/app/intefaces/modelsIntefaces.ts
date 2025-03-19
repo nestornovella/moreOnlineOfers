@@ -45,7 +45,7 @@ export interface SellerIF {
 
 export interface OrderIF {
     id: string
-    order: Object
+    order: object
     total: number
     totalDiscount: number
     sellerId: string
