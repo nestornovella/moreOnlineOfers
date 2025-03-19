@@ -1,9 +1,9 @@
-import { Params } from "@/app/api/interfaces";
+
 import { prismaClient } from "@/helpers/singeltonPrisma/prismaClient";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export async function PUT(request:NextRequest, {params}:Params) {
+export async function PUT(request:NextRequest, {params}) {
     try {
        
         const body = await request.json()
@@ -21,7 +21,7 @@ export async function PUT(request:NextRequest, {params}:Params) {
     }
 }
 
-export async function DELETE(request: NextRequest, {params}: Params) {
+export async function DELETE(request: NextRequest, {params}) {
     try {
         const {id} = params;
         const deleted = await prismaClient.product.delete({
