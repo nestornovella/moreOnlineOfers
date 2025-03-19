@@ -12,7 +12,7 @@ import { ImWhatsapp } from "react-icons/im"
 function Carrito() {
     const { getCart, cart, deleteProduct, addOne, restOne } = useCartStore()
 
-    const [cartState, setCartState] = useState<any | null>(null)
+    const [cartState, setCartState] = useState(null)
 
     useEffect(() => {
         document.body.style.background = 'white'

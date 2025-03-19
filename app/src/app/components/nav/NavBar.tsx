@@ -22,8 +22,8 @@ function Avatar() {
 }
 
 
-function Cart({ products }: { products: ProductIF[] }) {
-  const { getCart, cart } = useCartStore()
+function Cart() {
+  const { cart } = useCartStore()
   const [length, setLength] = useState(0)
   const router = useRouter()
   useEffect(() => {
@@ -56,7 +56,7 @@ function NavBar() {
     <div className="fixed top-0 left-0 z-10 border-b-2 border-[--rosado] backdrop-blur-lg bg-black/50  h-[70px] flex w-full items-center p-4 justify-between">
       <div className="flex w-full items-center p-4 justify-between 2xl:px-72 md:px-20 px-1 py-5">
         <Avatar />
-        <Cart products={products} />
+        <Cart />
       </div>
     </div>
   )
