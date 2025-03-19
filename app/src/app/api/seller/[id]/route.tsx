@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import {prismaClient} from "@/helpers/singeltonPrisma/prismaClient";
-import {Params} from "@/app/api/interfaces";
 
-export async function GET(request: NextRequest, {params}: Params) {
+
+export async function GET(request: NextRequest, {params}) {
   try {
     const {id} = params;
     const seller = await prismaClient.seller.findUnique({where: {id}});
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest, {params}: Params) {
   }
 }
 
-export async function PUT(request: NextRequest, {params}: Params) {
+export async function PUT(request: NextRequest, {params}) {
   try {
     const {id} = params;
     const body = await request.json();
@@ -27,7 +27,7 @@ export async function PUT(request: NextRequest, {params}: Params) {
   }
 }
 
-export async function DELETE(request: NextRequest, {params}: Params) {
+export async function DELETE(request: NextRequest, {params}) {
   try {
     const {id} = params;
     const deleted = await prismaClient.seller.delete({where: {id}});
