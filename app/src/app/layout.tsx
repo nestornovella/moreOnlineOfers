@@ -7,9 +7,7 @@ import { ToastContainer } from "react-toastify";
 import NavBar from "./components/nav/NavBar";
 
 
-export const fonts = {
-  roboto: '--font-roboto'
-} 
+
 
 const openSans = Open_Sans({
   variable: "--font-opensans",
