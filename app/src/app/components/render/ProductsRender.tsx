@@ -1,6 +1,5 @@
 import { CategoryIF } from "@/app/intefaces/modelsIntefaces"
 import { useProductStore } from "@/app/store/productsStore"
-import { useEffect } from "react"
 import ProductCard from "../card/ProductCard"
 
 interface Props {
@@ -17,7 +16,7 @@ function ProductRender({ category }: Props) {
 
     return (
         <div className="grid grid-cols-2 md:grid-cols-3  gap-2">
-            {filteredProducts.map((prod, index) => {
+            {filteredProducts.map((prod) => {
                 // Si es el último producto y la cantidad total es impar, expandirlo
                 const isLastOdd = false
 

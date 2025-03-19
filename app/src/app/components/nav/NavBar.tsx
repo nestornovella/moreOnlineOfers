@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import bag from '@/app/assets/bagLogo.png'
-import { ProductIF } from "@/app/intefaces/modelsIntefaces"
 import { useProductStore } from "@/app/store/productsStore"
 import { useCartStore } from "@/app/store/cartStore"
 import { useEffect, useState } from "react"
@@ -51,7 +50,7 @@ function Cart() {
 }
 
 function NavBar() {
-  const { products } = useProductStore()
+
   return (
     <div className="fixed top-0 left-0 z-10 border-b-2 border-[--rosado] backdrop-blur-lg bg-black/50  h-[70px] flex w-full items-center p-4 justify-between">
       <div className="flex w-full items-center p-4 justify-between 2xl:px-72 md:px-20 px-1 py-5">

@@ -12,7 +12,7 @@ import SelectCuantity from "./selectQuantity";
 import { useCartStore } from "../../store/cartStore";
 import { FaShoppingCart } from "react-icons/fa";
 
-function Detail({ params }: { params: Promise<{ id: string }> }) {
+function Detail() {
     const { findProduct, product } = useDetail()
     const { products } = useProductStore()
     const { addToCart, getCart, cart } = useCartStore()
@@ -20,7 +20,7 @@ function Detail({ params }: { params: Promise<{ id: string }> }) {
     const [cartLength, setCartLength] = useState(0)
 
     const router = useRouter()
-    const {id} = useParams() || ''
+    const {id} = useParams() 
     useEffect(() => {
         findProduct(id as string)
     }, [products])
@@ -137,7 +137,7 @@ function Detail({ params }: { params: Promise<{ id: string }> }) {
 export default Detail
 
 
-function Variant({ product, router }: { product: ProductIF, router:any }) {
+function Variant({ product, router }: { product: ProductIF, router }) {
 
     return (
         <div className="py-5">

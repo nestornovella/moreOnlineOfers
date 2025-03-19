@@ -1,5 +1,4 @@
 import { CategoryIF } from "@/app/intefaces/modelsIntefaces"
-import { useProductStore } from "@/app/store/productsStore"
 import ProdcutRender from "./ProductsRender"
 
 

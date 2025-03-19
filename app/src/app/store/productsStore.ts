@@ -21,6 +21,7 @@ export const useProductStore = create<PropIF>((set)=> {
                 })
                 return 200
             } catch (error) {
+                console.error(error)
                 return 500
             }
         }
