@@ -1,7 +1,7 @@
 'use client'
 import MainContainer from "@/app/components/containers/MainContainer"
 import DeleteProductModal from "./deleteProductModal"
-import { useEffect } from "react"
+import { Suspense, useEffect } from "react"
 import { useProductStore } from "@/app/store/productsStore"
 
 
@@ -22,7 +22,9 @@ function DeleteProductSection() {
         <hr className="border-t-4 border-[--celeste] border-solid " />
       </div>
       <div>
+        <Suspense fallback={<div className="w-full h-screen flex justify-center items-center"><h2 className="text-2xl text-[--celeste]">Cargando...</h2></div>}>
         <DeleteProductModal />
+        </Suspense>
       </div>
     </MainContainer>
   )

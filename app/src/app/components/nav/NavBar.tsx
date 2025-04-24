@@ -3,7 +3,7 @@
 import Image from "next/image"
 import bag from '@/app/assets/bagLogo.png'
 import { useCartStore } from "@/app/store/cartStore"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
 
@@ -57,8 +57,12 @@ function NavBar() {
   return (
     <div className="fixed top-0 left-0 z-10 border-b-2 border-[--rosado] backdrop-blur-lg bg-black/50  h-[70px] flex w-full items-center p-4 justify-between">
       <div className="flex w-full items-center p-4 justify-between 2xl:px-72 md:px-20 px-1 py-5">
-        <Avatar />
-        <Cart />
+        <Suspense fallback={<div className="w-[50px] h-[50px] rounded-full bg-[--rosado] animate-pulse"></div>}>
+          <Avatar />
+        </Suspense>
+        <Suspense fallback={<div className="w-[50px] h-[50px] rounded-full bg-[--rosado] animate-pulse"></div>}>
+          <Cart />
+        </Suspense>
       </div>
     </div>
   )
