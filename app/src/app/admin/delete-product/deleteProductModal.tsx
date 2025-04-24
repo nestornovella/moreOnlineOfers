@@ -4,7 +4,7 @@ import useGetProduts from "../hooks/findProduct"
 import Image from "next/image"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import useDeleteProduct from "./deleteHook"
-import { RefObject, useRef } from "react"
+import {  useRef } from "react"
 
 function DeleteProductModal() {
 

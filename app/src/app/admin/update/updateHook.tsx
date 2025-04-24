@@ -12,7 +12,7 @@ interface InputState {
 }
 
 function useUpdateProduct() {
-    const { products } = useProductStore()
+
 
     const [input, setinput] = useState<InputState>({
         name: '',
@@ -32,7 +32,12 @@ function useUpdateProduct() {
             const product = await response.json()
             setinput(product)
         } catch (error) {
-
+            if (error instanceof Error) {
+                console.log(error.message)
+            }
+            if (error instanceof Error)
+                getToast('error', error.message, 4000)
+            return 300
         }
     }
     function handleInput(e: React.ChangeEvent<HTMLInputElement> |
