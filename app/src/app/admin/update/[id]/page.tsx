@@ -2,43 +2,29 @@
 
 import TextInput from "@/app/admin/components/fields/TextInput"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
-import Image from "next/image"
-import useGetProduts from "../../hooks/findProduct"
-import { MdDeleteOutline } from "react-icons/md";
 import { FaUpload } from "react-icons/fa";
 import ImageViewerSection from "../../components/ImageViwerSection"
-import MainModal from "../../components/modals/MainModal"
-import ParenProductModal from "../../components/product/ParentProductMenu"
+
 import PanelInputsContainer from "../../components/containers/PanelInputsContainer"
 import ImageFileInput from "../../components/fields/ImageFileInput"
-import CreateCategory from "../../components/categories/CreateCategory"
-import Select from "../../components/categories/Select"
+
 import TextArea from "../../components/fields/TextArea"
-import useCreateHook from "../../hooks/createHook"
+
 import useUpdateProduct from "../updateHook"
-import { useParams, useSearchParams } from "next/navigation"
+import { useParams } from "next/navigation"
 
 
 
 
 //create componente funcial
 function ProductCreateSection() {
-    const [ToogleOpen, setToogleOpen] = useState(false);
 
-   
+  
     const {findProduct, input, handleImage, handleInput, submit} = useUpdateProduct()
 
     const {id} = useParams()
-
-    function toogleOpen() {
-        setToogleOpen((prev) => !prev)
-    }
-
-    function close() {
-        setToogleOpen(false)
-    }
 
 
     useEffect(()=>{
