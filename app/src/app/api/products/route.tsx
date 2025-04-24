@@ -22,6 +22,21 @@ export async function GET() {
 }
 
 
+export async function PUT(request:NextRequest){
+   try {
+    const body = await request.json()
+    if(!body.id) throw new Error('error al intentar modificar el producto')
+    const product = await prismaClient.product.update({where:{id:body.id}, data: body})
+    if(!product){
+        throw new Error('no se logro modificar el producto')
+    }
+    else return NextResponse.json('producto actualizado')
+   } catch (error) {
+    return NextResponse.json(error.message)
+   } 
+}
+
+
 export async function POST(request: NextRequest) {
     try {
         const { name, price, categories, description, image, parentId, measureUnits, measureValue } = await request.json()
@@ -47,6 +62,21 @@ export async function POST(request: NextRequest) {
 
             }
         })
+
+        const sellers = await prismaClient.seller.findMany()
+
+        await prismaClient.sellerProduct.createMany({
+            data: sellers.map(sell => {
+
+                return {
+                    productId: product.id,
+                    sellerId: sell.id,
+                    porcent:20
+
+                }
+            })
+        })
+
         if (!product) throw new Error('problemas para crear producto o asociarlo')
         return NextResponse.json(product, { status: 201 });
     } catch (error) {

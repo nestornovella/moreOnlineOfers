@@ -15,11 +15,9 @@ function ProductRender({ category }: Props) {
     )
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-3  gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-2">
             {filteredProducts.map((prod) => {
-                // Si es el último producto y la cantidad total es impar, expandirlo
                 const isLastOdd = false
-
                 return (
                     <div key={prod.id} className={isLastOdd ? "col-span-2" : ""}>
                         <ProductCard product={prod} />

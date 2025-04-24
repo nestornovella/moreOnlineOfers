@@ -6,12 +6,13 @@ import { getToast } from '@/helpers/toastofy';
 
 export type GetCart = Record<string, { product: ProductIF; quantity: number; subTotal:number }>
 interface CartSetProps {
-  cart: Record<string, { product: ProductIF; quantity: number; subTotal: number }>;
+  cart: Record<string, { product: ProductIF; quantity: number; subTotal: number } >;
   addToCart: (id: string, product: ProductIF, quantity?: number) => void;
   getCart: () => Record<string, { product: ProductIF; quantity: number; subTotal: number }>;
   deleteProduct: (id: string) => void
   addOne: (id: string) => void
   restOne: (id: string) => void
+  clearCart:()=> void
 }
 
 export const useCartStore = create<CartSetProps>()(
@@ -80,6 +81,15 @@ export const useCartStore = create<CartSetProps>()(
 
           return {
             cart: newCart
+          }
+        })
+
+      },
+
+      clearCart:()=>{
+        set(()=>{
+          return {
+            cart:{}
           }
         })
 

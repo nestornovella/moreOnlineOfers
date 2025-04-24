@@ -27,6 +27,7 @@ function Detail() {
 
     useEffect(() => {
         document.body.style.background = 'white'
+        window.scrollTo(0, 0)
         return () => {
             document.body.style.background = 'var(--background)'
         }
@@ -52,9 +53,9 @@ function Detail() {
             <div style={{ fontFamily: "var(--font-roboto)" }} className=" mt-[100px] text-center md:text-start grid md:grid-cols-2 items-center gap-2">
                 {product ? (
                     <div className="p-2 flex flex-col gap-2 ">
-                         <div className="absolute z-[10] left-0 bg-gray-700 text-[--rosado] top-[130px] flex gap-2 text-center justify-center items-center w-fit m-auto border border-[--rosado] p-1">
-                                <h2 className="font-bold text-white ">Precio</h2>
-                                <h2 className='font-bold text-xl'>$ {product.price}</h2>
+                         <div className="absolute z-[10] left-0 bg-gray-700 text-[--rosado] top-[130px] flex gap-2 text-center justify-center items-center w-fit m-auto  p-2">
+                                <h2 className="font-bold text-2xl text-white ">Precio</h2>
+                                <h2 className='font-bold text-4xl'>$ {product.price}</h2>
                             </div>
                         <div className="relative">
                             <div className="text-gray-700 flex gap-2 text-xl absolute bottom-1 left-0 items-center">
@@ -73,7 +74,7 @@ function Detail() {
                                 <p className="text-xs font-semibold text-[--rosado]">Variedades</p>
                                 <div className="flex gap-2">
                                     {
-                                        product?.varieties?.length &&
+                                        product?.varieties?.length > 0 &&
                                         product.varieties.map(pr => {
                                             return <Variant  router={router} key={pr.id} product={pr} />
                                         })

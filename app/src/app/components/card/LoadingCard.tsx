@@ -24,7 +24,7 @@ function LoadingCard() {
                 </div>
                 <div className="flex justify-between  items-center flex-col lg:py-6  ">
 
-                    <div className=""><div className="bg-[--rosado] text-white font-semibold py-1 px-7 -mx-4 rounded-lg h-[40px] pt-2 w-[80px] relative top-4 gap-2 flex flex-col -rotate-12">
+                    <div className=""><div className="bg-[black] text-white font-semibold py-1 px-7 -mx-4 rounded-lg h-[40px] pt-2 w-[80px] relative top-4 gap-2 flex flex-col -rotate-12">
                         <div className="bg-white w-[30px] h-[8px]" >
 
                         </div>
@@ -32,7 +32,7 @@ function LoadingCard() {
 
                         </div>
                     </div>
-                        <div className="bg-[#042698] text-white font-semibold py-1 px-7 mx-4 rounded-lg h-[40px] pt-2 w-[80px] flex gap-1 flex-col" >
+                        <div className="bg-[--verde] text-white font-semibold py-1 px-7 mx-4 rounded-lg h-[40px] pt-2 w-[80px] flex gap-1 flex-col" >
                             <div className="bg-white w-[30px] h-[8px]" >
 
                             </div>

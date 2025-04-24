@@ -13,6 +13,7 @@ function useGetProduts() {
 
     function findProduct(name: string) {
         if (name) {
+            console.log(products)
             setProducts(products.filter((pr: ProductIF) => pr.name.toLowerCase().includes(name.toLowerCase())))
         }
         else {

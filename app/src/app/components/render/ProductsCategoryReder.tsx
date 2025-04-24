@@ -17,9 +17,8 @@ function ProductsCategoryRender({ subCategories }: Props) {
             {
                 subCategories?.map((category, index) => {
                     return <div key={index} className="p-2 w-full">
-                        <div className=" border-2 border-[--verde] bg-[--verde] text-lg  text-white font-bold  px-3  m-auto mt-4 mb-2 w-full flex justify-center ">
-                            <h2 className=" text-md
-                            ">{category.name}</h2>
+                        <div className=" font-semibold  px-3  m-auto mt-4 mb-2 w-full flex justify-satrt ">
+                            <h2 className=" p-1 rounded-sm">{category.name}</h2>
                         </div>
                         <ProdcutRender category={category} />
                     </div>

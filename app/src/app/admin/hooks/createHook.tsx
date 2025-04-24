@@ -121,7 +121,7 @@ function useCreateHook() {
             if (response.error) throw new Error(`no se logro crear el producto: ${response.error}`)
 
             getToast('success', 'producto creado con exito', 4000)
-            getToast('loading', 'se esta creando el producto...', 3000)
+            getToast('info', 'se esta creando el producto...', 3000)
             return { status: 201, response }
         } catch (error) {
             if (error instanceof Error) {

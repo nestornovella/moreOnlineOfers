@@ -4,8 +4,8 @@ import {prismaClient} from "@/helpers/singeltonPrisma/prismaClient";
 
 export async function GET(request: NextRequest, {params}) {
   try {
-    const {id} = params;
-    const seller = await prismaClient.seller.findUnique({where: {id}});
+   
+    const seller = await prismaClient.seller.findUnique({where: {id: await params.id},include:{products:true}});
     return NextResponse.json(seller, {status: 200});
   } catch (error) {
     if(error instanceof Error) {

@@ -1,9 +1,10 @@
 'use client'
+import MainContainer from "@/app/components/containers/MainContainer"
+import { useCategoryStore } from "@/app/store/categoryStore"
+import { useProductStore } from "@/app/store/productsStore"
 import { useEffect } from "react"
-import MainContainer from "../components/containers/MainContainer"
-import ProductCreateSection from "./components/product/productCreateSection"
-import { useCategoryStore } from "../store/categoryStore"
-import { useProductStore } from "../store/productsStore"
+import ProductCreateSection from "../components/product/productCreateSection"
+
 
 
 function PanelAdmin() {
@@ -35,8 +36,6 @@ function PanelAdmin() {
                 Panel Admin
             </h2>
             <ProductCreateSection/>
-            
-
         </MainContainer>
     )
 }

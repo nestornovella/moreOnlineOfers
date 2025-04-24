@@ -4,14 +4,16 @@ import Image from "next/image"
 import bag from '@/app/assets/bagLogo.png'
 import { useCartStore } from "@/app/store/cartStore"
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 
 
 function Avatar() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const sellerId = searchParams.get('seller') || ''
   return (
-    <div onClick={() => router.replace('/')} style={{ fontFamily: 'var(--font-roboto) ' }}>
+    <div onClick={() => router.replace('/?seller=' + sellerId)} style={{ fontFamily: 'var(--font-roboto) ' }}>
       <div className="rounded-full bg-[--rosado] text-white p-3 size-[60px] text-center">
         <h2 className="text-[30px] font-bold ">Ca</h2>
       </div>
@@ -24,18 +26,20 @@ function Cart() {
   const { cart } = useCartStore()
   const [length, setLength] = useState(0)
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const sellerId = searchParams.get('seller') || ''
   useEffect(() => {
     const cartLength = Object.keys(cart).length
-    
+
     if (cartLength) {
       setLength(cartLength)
-    }else{
+    } else {
       setLength(0)
     }
   }, [cart])
-  console.log('NAV ->', cart)
+
   return (
-    <div onClick={() => router.replace('/carrito')} style={{ fontFamily: 'var(--font-roboto)' }} className="relative">
+    <div onClick={() => router.replace('/carrito/?seller=' + sellerId)} style={{ fontFamily: 'var(--font-roboto)' }} className="relative">
       <Image className="size-[50px]" alt="" src={bag} width={500} height={500} />
       {
         length > 0 &&

@@ -11,7 +11,7 @@ function ProductsMainSection() {
 
     const { categories, initialCharge } = useCategoryStore()
     const {products} = useProductStore()
-    const colors = ['--rosado', '--azul', '--celeste','--rosado', '--azul', '--celeste']
+    
 
     useEffect(() => {
         if(!categories.length){
@@ -29,7 +29,7 @@ function ProductsMainSection() {
                     return (
                         <div className="flex flex-col items-center relative" key={ct.id}>
                             
-                            <div key={i} style={{ backgroundColor: `var(${colors[i]})` }} className={`p-1 rounded  flex justify-center w-fit relative ${i % 2 == 0 ? 'animate-downLeter' : 'animate-upLater' }`}>
+                            <div key={i}  className={`p-1 rounded  flex justify-center w-fit relative  }`}>
                                 <h2 className="font-bold text-lg md:text-2xl">{ct.name}</h2>
                             </div>
 
