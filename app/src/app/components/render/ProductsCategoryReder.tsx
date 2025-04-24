@@ -1,5 +1,6 @@
 import { CategoryIF } from "@/app/intefaces/modelsIntefaces"
 import ProdcutRender from "./ProductsRender"
+import Category from "./Category"
 
 
 
@@ -17,9 +18,7 @@ function ProductsCategoryRender({ subCategories }: Props) {
             {
                 subCategories?.map((category, index) => {
                     return <div key={index} className="p-2 w-full">
-                        <div className=" font-semibold  px-3  m-auto mt-4 mb-2 w-full flex justify-satrt ">
-                            <h2 className=" p-1 rounded-sm">{category.name}</h2>
-                        </div>
+                        <Category category={category.name} />
                         <ProdcutRender category={category} />
                     </div>
                 })

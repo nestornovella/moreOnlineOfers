@@ -1,6 +1,7 @@
 import { CategoryIF } from '@/app/intefaces/modelsIntefaces';
 import { useCategoryStore } from '@/app/store/categoryStore';
 import { getToast } from '@/helpers/toastofy';
+import { Input } from 'postcss';
 import React, { useState } from 'react';
 
 interface InputState {
@@ -12,6 +13,8 @@ interface InputState {
     parentId: null | string
     newCategory: string
     parentCategory: string
+    measureUnits: string
+    measureValue: string
 }
 
 function useCreateHook() {
@@ -23,7 +26,9 @@ function useCreateHook() {
         categories: [],
         parentId: null,
         newCategory: '',
-        parentCategory: ''
+        parentCategory: '',
+        measureUnits: '',
+        measureValue:''
     });
     const [buildCategories, setBuildCategories] = useState<CategoryIF[]>([])
 
@@ -52,16 +57,21 @@ function useCreateHook() {
     }
 
 
-    function handleInput(e: React.ChangeEvent<HTMLInputElement> |
-        React.ChangeEvent<HTMLSelectElement>
-        | React.ChangeEvent<HTMLTextAreaElement>) {
-
+    function handleInput(
+        e:
+          | React.ChangeEvent<HTMLInputElement>
+          | React.ChangeEvent<HTMLSelectElement>
+          | React.ChangeEvent<HTMLTextAreaElement>
+          | React.MouseEvent<HTMLButtonElement>
+      ) {
+        const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | HTMLButtonElement;
+      
         setinput({
-            ...input,
-            [e.target.name]: e.target.value
-        })
-    }
-
+          ...input,
+          [target.name]: target.value,
+        });
+      }
+      
     function handleProductParent(parentId: string | null) {
 
         if (parentId) {
@@ -116,6 +126,8 @@ function useCreateHook() {
                 price: 0,
                 image: '',
                 categories: [],
+                measureValue:'',
+                measureUnits:''
             })
             const response = await newProduct.json()
             if (response.error) throw new Error(`no se logro crear el producto: ${response.error}`)
@@ -147,7 +159,9 @@ function useCreateHook() {
                 categories: [],
                 parentId: null,
                 newCategory: '',
-                parentCategory: ''
+                parentCategory: '',
+                measureUnits: '',
+                measureValue:''
             }
         )
         setBuildCategories([])

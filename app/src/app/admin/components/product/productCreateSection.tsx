@@ -15,6 +15,7 @@ import useGetProduts from "../../hooks/findProduct"
 import { MdDeleteOutline } from "react-icons/md";
 import { FaUpload } from "react-icons/fa";
 import CreateCategory from "../categories/CreateCategory"
+import SelectorMesure from "../fields/selectorMesure"
 
 
 
@@ -102,6 +103,12 @@ function ProductCreateSection() {
                                 <TextInput label="Nombre" type="text" palceHolder="Escribe el nombre" value={input.name} name="name" onChange={handleInput} />
                                 <TextInput label="Precio" type="number" palceHolder="Escribe el precio" value={input.price} name="price" onChange={handleInput} />
                             </PanelInputsContainer>
+                            
+                            <div className="px-4 py-4 flex flex-col gap-2">
+                                <h2 className="text-white">Selecciona la unidad y su valor</h2>
+                                <SelectorMesure input={input} handleInput={handleInput}/>
+                            </div>
+
                             <div className="">
                                 <ImageFileInput cb={handleImage} />
                             </div>
@@ -120,7 +127,6 @@ function ProductCreateSection() {
                             <button onClick={submitCategories} className=" border text-white font-bold  hover:bg-black hover:border-[--celeste] bg-[--celeste] rounded-xl my-4 p-2 m-auto block mt-4"> Crear Categoria</button>
                         }
                     </div>
-                    
 
 
                 </div>

@@ -1,3 +1,4 @@
+import { MdOpacity } from "react-icons/md";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -12,6 +13,26 @@ export default {
         "fade-in": { from: { opacity: "0", transform: "rotateY(-100deg)" }, to: { opacity: '1', transform: "rotateY(0deg)" } },
         "zoom-in": { from: { transform: "scale(0.8)" }, to: { transform: "scale(1)" } },
         "slide-up": { from: { transform: "translateY(20px)" }, to: { transform: "translateY(0)" } },
+        "become-left": {
+          from: {
+            transform: "translateX(-100%)"
+          },
+          to: {
+            transform: "translateX(0)",
+            opacity: "1"
+
+          },
+        },
+        "become-right": {
+          from: {
+            transform: "translateX(100)"
+          },
+          to: {
+            transform: "translateX(0)",
+            opacity: "1"
+          },
+        },
+
         "down-Leter": {
           from: { transform: "rotate(0deg)" },
           to: { transform: "rotate(5deg)" },
@@ -45,7 +66,9 @@ export default {
         "upLater": "up-Leter 1s ease-out forwards",
         "transition1": "transition .5s ease-out forwards",
         "transition2": "transition .5s ease-out forwards 0.2s",
-        "card":"cards .4s ease-out forwards"
+        "card": "cards .4s ease-out forwards",
+        "become-left": "become-left 1s ease-out forwards .5s",
+        "become-right": "become-right 1s ease-out forwards .5s",
       },
 
       colors: {

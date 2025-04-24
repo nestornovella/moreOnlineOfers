@@ -30,7 +30,7 @@ function ProductsMainSection() {
                         <div className="flex flex-col items-center relative" key={ct.id}>
                             
                             <div key={i}  className={`p-1 rounded  flex justify-center w-fit relative  }`}>
-                                <h2 className="font-bold text-lg md:text-2xl">{ct.name}</h2>
+                                <h2 className="font-bold text-lg md:text-2xl text-green-300">{ct.name}</h2>
                             </div>
 
 
