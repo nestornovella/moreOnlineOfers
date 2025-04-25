@@ -1,5 +1,3 @@
-import Image from "next/image";
-import banner from '@/app/assets/banner.png'
 import { TiThumbsOk } from "react-icons/ti";
 
 function Header() {
