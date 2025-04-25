@@ -5,7 +5,7 @@ function Header() {
     const textClass = "opacity-0 animate-become-left  text-[60px] md:text-[100px] xl:text-[140px] xl:text-center w-full  font-bold bg-gradient-to-r from-sky-400 to-green-500 bg-clip-text text-transparent"
 
     return (
-        <div style={{ fontFamily: "var(--font-roboto)" }} className="mt-20 text-white flex flex-col flex-wrap md:flex-row w-full font-bold gap-2 p-5 my-10 md:p-0 justify-center items-center ">
+        <div style={{ fontFamily: "var(--font-roboto)" }} className="mt-20 text-white flex flex-col flex-wrap md:flex-row w-full font-bold gap-2 px-5 my-10 md:p-0 justify-center items-center ">
             {/* <Image className="animate-fade-in md:max-w-[700px]" alt="" src={banner} width={1000} height={800} quality={100}/> */}
             <h2 className={textClass}>Mas</h2>
             <h2 className={textClass}>Ofertas</h2>
