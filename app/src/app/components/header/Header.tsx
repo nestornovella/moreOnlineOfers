@@ -3,7 +3,7 @@ import logo from "@/app/assets/logo.svg"
 
 function Header() {
 
-    const textClass = "opacity-0 animate-become-left  text-[70px] md:text-[100px] xl:text-[140px] xl:text-center w-full  font-bold bg-gradient-to-r from-sky-400 to-green-500 bg-clip-text text-transparent"
+    //const textClass = "opacity-0 animate-become-left  text-[70px] md:text-[100px] xl:text-[140px] xl:text-center w-full  font-bold bg-gradient-to-r from-sky-400 to-green-500 bg-clip-text text-transparent"
 
     return (
         <div style={{ fontFamily: "var(--font-roboto)" }} className="mt-20 text-white text-center flex flex-col flex-wrap md:flex-row w-full font-bold gap-0 px-5 p-0  md:p-0 justify-center items-center ">
