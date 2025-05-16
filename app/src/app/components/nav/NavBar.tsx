@@ -39,7 +39,7 @@ function Cart() {
   }, [cart])
 
   return (
-    <div onClick={() => router.replace('/carrito/?seller=' + sellerId)} style={{ fontFamily: 'var(--font-roboto)' }} className="relative">
+    <div onClick={() => router.push('/carrito/?seller=' + sellerId)} style={{ fontFamily: 'var(--font-roboto)' }} className="relative">
       <Image className="size-[50px]" alt="" src={bag} width={500} height={500} />
       {
         length > 0 &&

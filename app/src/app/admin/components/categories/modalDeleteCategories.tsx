@@ -23,7 +23,7 @@ function ModalDeleteCategory() {
                         <div className="w-full flex gap-2 flex-col">
                             {
                                 fondedCategory.map(ca => {
-                                    return <ProductCardMenu  cb={deleteCategory} key={ca.id} category={ca} />
+                                    return <ProductCardMenu  cb={()=> deleteCategory(ca.id)} key={ca.id} category={ca} />
                                 })
                             }
                         </div>

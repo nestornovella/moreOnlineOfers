@@ -21,12 +21,26 @@ export const useProductStore = create<PropIF>((set) => {
                     const seller = await fetch(`/api/seller/${sellerId}`)
                     const sellerToJson = await seller.json() 
 
-                  
+                    
 
                     const prod = await fetch('/api/products')
                     const productToJson = await prod.json() 
 
-                    const productList = productToJson.map(pr => {
+                    
+
+
+
+                    const productSorted = productToJson.sort((a, b) => {
+                        if (a.name < b.name) {
+                            return -1
+                        }
+                        if (a.name > b.name) {
+                            return 1
+                        }
+                        return 0
+                    }
+                    )
+                    const productList = productSorted.map(pr => {
                         const porcent = sellerToJson.products.find(sellerPr => sellerPr.productId === pr.id).porcent
                         return {...pr, price: pr.price + ((pr.price * porcent) / 100)}
                     })
@@ -39,9 +53,19 @@ export const useProductStore = create<PropIF>((set) => {
                 }else{
                     const prod = await fetch('/api/products')
                     const productToJson = await prod.json()
+                     const productSorted = productToJson.sort((a, b) => {
+                        if (a.name < b.name) {
+                            return -1
+                        }
+                        if (a.name > b.name) {
+                            return 1
+                        }
+                        return 0
+                    }
+                    )
                     set(()=>{
                         return {
-                        products:productToJson
+                        products:productSorted
                     }
                     })
                     

@@ -13,7 +13,7 @@ interface InputState {
     newCategory: string
     parentCategory: string
     measureUnits: string
-    measureValue: string
+    measureValue: number
 }
 
 function useCreateHook() {
@@ -27,7 +27,7 @@ function useCreateHook() {
         newCategory: '',
         parentCategory: '',
         measureUnits: '',
-        measureValue:''
+        measureValue: 0
     });
     const [buildCategories, setBuildCategories] = useState<CategoryIF[]>([])
 
@@ -110,13 +110,13 @@ function useCreateHook() {
 
     async function submit() {
         try {
-            getToast('info', 'se esta creando el producto...', 3000)
+            getToast('info', 'se esta creando el producto...', 2000)
             const newProduct = await fetch('/api/products', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(input)
+                body: JSON.stringify({...input, measureValue: Number(input.measureValue)})
             })
             setinput({
                 ...input,
@@ -124,9 +124,7 @@ function useCreateHook() {
                 description: '',
                 price: 0,
                 image: '',
-                categories: [],
-                measureValue:'',
-                measureUnits:''
+                measureValue:0,
             })
             const response = await newProduct.json()
             if (response.error) throw new Error(`no se logro crear el producto: ${response.error}`)
@@ -160,7 +158,7 @@ function useCreateHook() {
                 newCategory: '',
                 parentCategory: '',
                 measureUnits: '',
-                measureValue:''
+                measureValue:0
             }
         )
         setBuildCategories([])

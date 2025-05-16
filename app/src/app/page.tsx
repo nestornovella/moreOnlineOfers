@@ -1,37 +1,15 @@
-'use client'
 
-import { useEffect } from "react";
-import MainContainer from "./components/containers/MainContainer";
-import Header from "./components/header/Header";
-import ProductsMainSection from "./components/ProductsMainSectio";
-import { useProductStore } from "./store/productsStore";
-import TransitionPage from "./components/containers/TransitionPage";
+import Home from "./Home";
 
 
 
-
-
-export default function Home() {
-  
-  
-  const { initialCharge, products } = useProductStore()
-
-  useEffect(() => {
-
-    if (!products.length) {
-      initialCharge()
-    }
-    
-  }, [])
-
+export default function Page({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+  const seller = searchParams.seller || '';
+ 
+  console.log(seller, 'seller') 
   
   return (
-
-    <MainContainer>
-      <TransitionPage />
-      <Header />
-      <ProductsMainSection />
-    </MainContainer>
+    <Home seller={seller}/>
   );
 }
 

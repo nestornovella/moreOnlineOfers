@@ -1,4 +1,5 @@
-import { TiThumbsOk } from "react-icons/ti";
+import Image from "next/image";
+import logo from "@/app/assets/logo.svg"
 
 function Header() {
 
@@ -6,8 +7,8 @@ function Header() {
 
     return (
         <div style={{ fontFamily: "var(--font-roboto)" }} className="mt-20 text-white text-center flex flex-col flex-wrap md:flex-row w-full font-bold gap-0 px-5 p-0  md:p-0 justify-center items-center ">
-            {/* <Image className="animate-fade-in md:max-w-[700px]" alt="" src={banner} width={1000} height={800} quality={100}/> */}
-            <h2 className={textClass}>Mas</h2>
+            <Image className="animate-fade-in md:max-w-[700px]" alt="" src={logo} width={1000} height={800} quality={100}/>
+            {/* <h2 className={textClass}>Mas</h2>
             <h2 className={textClass}>Ofertas</h2>
             <h2 className={textClass}>Online.com</h2>
             <div className="flex justify-center w-full">
@@ -17,7 +18,7 @@ function Header() {
                         Envíos Gratis
                     </h2>
                 </div>
-            </div>
+            </div> */}
 
 
         </div>

@@ -16,8 +16,8 @@ function ProductRender({ category }: Props) {
 
     return (
         <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-2">
-            {filteredProducts.map((prod) => {
-                const isLastOdd = false
+            {filteredProducts.map((prod, index) => {
+                const isLastOdd = index % 2 === 0 && index === filteredProducts.length - 1
                 return (
                     <div key={prod.id} className={isLastOdd ? "col-span-2" : ""}>
                         <ProductCard product={prod} />

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { TiArrowUnsorted } from "react-icons/ti";
+import TextInput from "./TextInput";
 
 interface InputState {
     name: string;
@@ -11,10 +12,10 @@ interface InputState {
     newCategory: string
     parentCategory: string
     measureUnits: string
-    measureValue: string
+    measureValue: number
 }
 
-function SelectorMesure({ input, handleInput }: { input: InputState, handleInput: (e: React.MouseEvent<HTMLButtonElement>) => void }) {
+function SelectorMesure({ input, handleInput }: { input: InputState, handleInput: (e: React.MouseEvent<HTMLButtonElement> | React.ChangeEvent<HTMLInputElement>) => void }) {
     const [open, setOpen] = useState(false);
 
     const menuRef = useRef<HTMLDivElement>(null);
@@ -32,8 +33,10 @@ function SelectorMesure({ input, handleInput }: { input: InputState, handleInput
         };
     }, []);
 
+    console.log(input,  "este es le imput")
+
     return (
-        <div className=" w-fit flex gap-4">
+        <div className=" w-fit flex gap-4 items-center border rounded-lg p-2 border-[--verde]">
             <div >
                 <button className="bg-[--celeste] text-black rounded-lg p-2 font-semibold flex justify-between items-center" onClick={() => { setOpen(!open) }}>
                     {!input.measureUnits ? 'S/U' : input.measureUnits} <TiArrowUnsorted className="text-[--celeste] text-black" />
@@ -45,7 +48,7 @@ function SelectorMesure({ input, handleInput }: { input: InputState, handleInput
                         <div className="flex flex-col ">
                             <button className="p-2 hover:bg-[--celeste] rounded-lg" value="Kg" name="measureUnits" onClick={(e) => { handleInput(e); setOpen(!open) }}>Kg</button>
                             <button className="p-2 hover:bg-[--celeste] rounded-lg" value="Gr" name="measureUnits" onClick={(e) => { handleInput(e); setOpen(!open) }}>Gr</button>
-                            <button className="p-2 hover:bg-[--celeste] rounded-lg" value="Kg" name="measureUnits" onClick={(e) => { handleInput(e); setOpen(!open) }}>Ml</button>
+                            <button className="p-2 hover:bg-[--celeste] rounded-lg" value="Ml" name="measureUnits" onClick={(e) => { handleInput(e); setOpen(!open) }}>Ml</button>
                             <button className="p-2 hover:bg-[--celeste] rounded-lg" value="Cm3" name="measureUnits" onClick={(e) => { handleInput(e); setOpen(!open) }}>Cm3</button>
                         </div>
                     </div>
@@ -54,8 +57,7 @@ function SelectorMesure({ input, handleInput }: { input: InputState, handleInput
             {
                 input.measureUnits &&
                 
-                <input  />
-
+                <TextInput label="Peso o Medida"  name="measureValue" onChange={handleInput} palceHolder="Ingrese peso o cantidad" type="number" value={input.measureValue}/>
             }
         </div>
 

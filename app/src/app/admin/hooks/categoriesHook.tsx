@@ -35,9 +35,10 @@ function useCategoriesHook() {
   async function deleteCategory(id: string) {
     // delete category
     try {
-      const response = await fetch('/api/categories/' + id,{
+      const response = await fetch('/api/categories/id/' + id,{
         method:'DELETE'
       })
+      console.log(id, "esta es la id")
       const resToJson = await response.json()
 
       if(resToJson.error)throw new Error(resToJson.error)
@@ -47,7 +48,7 @@ function useCategoriesHook() {
       setFondedCategory(fondedCategory.filter(ct => ct.id != id))
     } catch (error) {
       if (error instanceof Error) {
-        getToast('error', error.message, 3000)
+        getToast('error', "no se pudo eliminar la categoria", 3000)
       }
     }
   }
