@@ -29,13 +29,13 @@ function ProductCard({ product }: Props) {
     const { id, name, price, image, measureUnits, measureValue } = product
     return (
         <Link href={`/detail/${id}/?seller=${sellerId}`}>
-            <div style={{ fontFamily: "var(--font-roboto)" }} className="animate-card border rounded-xl p-2 text-center lg:text-start bg-white grid md:grid-cols-2   relative">
+            <div style={{ fontFamily: "var(--font-roboto)" }} className="animate-card border rounded-xl p-2 text-center lg:text-start bg-white grid md:grid-cols-2  h-full relative">
 
                 <div className="flex justify-center items-center p-2">
                     <Image className="size-[150px] object-cover" src={image ? image : ''} alt="" quality={100} width={1000} height={1000} />
                 </div>
                 <div className="flex justify-between  items-center flex-col lg:py-6  ">
-                    <h2 className="font-bold min-h-10 text-sm md:text-sm  text-gray-500">{name[0].toUpperCase() + name.slice(1)}</h2>
+                    <h2 className="font-bold min-h-5 text-sm md:text-sm  text-gray-500">{name[0].toUpperCase() + name.slice(1)}</h2>
                     <div className="p-2 text-xs md:text-sm  text-gray-500">
                         <p>toque el producto que desea agregar al carrito</p>
                     </div>
