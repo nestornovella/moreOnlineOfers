@@ -1,6 +1,6 @@
 import { FaShoppingCart } from "react-icons/fa"
 import loading from '@/app/assets/loading.png'
-import Image from "next/image"
+import Image from "next/image" 
 
 function LoadingCard() {
 
